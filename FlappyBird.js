@@ -7,14 +7,8 @@ async function draw() {
     if (tubes[i].isOffscreen() === true) {
       tubes.splice(i, 1);
     }
-    for (let i = 0; i < cloneArray.length; i++) {
-      if (cloneArray[i].status === 'alive') {
-        cloneArray[i].score += 1;
-      }
-    }
     if (deadAmount < population) {
       for (let j = 0; j < cloneArray.length; j++) {
-        //bug here
         if (cloneArray[j].status === 'alive') {
           if (tubes[i].isColllision(cloneArray[j])) {
             cloneArray[j].status = 'dead';
@@ -28,6 +22,8 @@ async function draw() {
           }
           await updatePosition(cloneArray[j]);
           await drawClone(cloneArray[j])
+          cloneArray[j].score = score;
+          continue;
           }
         }
       }
@@ -58,15 +54,18 @@ function checkForReset() {
   }
 }
 
-function reset() {
+async function reset() {
   tubes = [];
   generation++;
   deadAmount = 0;
   score = 0;
+  sortCloneArray()
+  console.log(cloneArray)
+  console.log('e')
   try {
-    makeNewGen();
+    //await makeNewGen();
   } catch (error) {
-    reset()
+    //checkForReset()
     generation -= 1
   }
 }

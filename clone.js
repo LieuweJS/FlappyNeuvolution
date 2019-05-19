@@ -1,5 +1,6 @@
 function clone() {
   //clone permanent genetic information
+  this.score = 0;
   this.neuralModel = new Model(2,[5,5],1);
   this.size = height / 8;
   this.x = width / 4;
@@ -9,7 +10,6 @@ function clone() {
   this.velo = 0;
   //clone non-genetic information
   this.status = 'alive';
-  this.score = 0;
   this.yDistance = 0;
   this.output = 0;
 }

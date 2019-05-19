@@ -1,7 +1,7 @@
 //makes a new generation of clones
-function makeNewGen() {
+async function makeNewGen() {
   let tempArray = [];
-  cloneArray.sort(sortByProperty('-score'))
+  //cloneArray.sort(sortByProperty('-score'))
   const winner = JSON.parse(JSON.stringify(cloneArray[0].neuralModel));
   for(let i = 0; i < Math.round(population / 10); i++) {
     tempArray.push(winner);
@@ -31,8 +31,8 @@ function makeNewGen() {
   for (let i = tempArray.length - 1; i < population; i++) {
     let randomFather = Math.round(Math.random() * (tempArray.length - 1))
     let randomMother = Math.round(Math.random() * (tempArray.length - 1))
-    let d = breed(tempArray[randomFather], tempArray[randomMother])
-    let mutated = mutate(d)
+    let d = await breed(tempArray[randomFather], tempArray[randomMother])
+    let mutated = await mutate(d)
     cloneArray[i].neuralModel = mutated
     cloneArray[i].status = 'alive';
     cloneArray[i].x = width / 4;
@@ -48,7 +48,7 @@ function makeNewGen() {
   cloneArray[0].neuralModel = winner;
 }
 
-function breed(father, mother) {
+async function breed(father, mother) {
   for (let i = 0; i < father.synapses.length; i++) {
     let dna = Math.round(Math.random())
     if (dna === 1) {
@@ -58,7 +58,7 @@ function breed(father, mother) {
   return father;
 }
 
-function mutate(network) {
+async function mutate(network) {
   const length = Math.round(network.synapses.length / mutationRate)
   for (let i = 0; i < length; i++) {
     let randomChange = Math.floor(Math.random() * network.synapses.length - 1)
@@ -87,6 +87,21 @@ function sortByProperty(property) {
     const result = (a[property] < b[property]) ? -1 : (a[property] > b[property]) ? 1 : 0;
     return result * sortOrder;
   }
+}
+
+function sortCloneArray() {
+  const length = cloneArray.length;
+
+  for(let i = 1; i < length; i++) {
+    let key = cloneArray[i].score;
+    let j = i - 1;
+    while(j >= 0 && key < cloneArray[j].score) {
+      cloneArray[j + 1].score = cloneArray[j].score;
+      j -= 1;
+    }
+    cloneArray[j + 1].score = key;
+  }
+  return;
 }
 
 function SELU6(x) {
