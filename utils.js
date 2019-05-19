@@ -29,11 +29,8 @@ async function makeNewGen() {
     cloneArray[i].xDistance = 0;
     cloneArray[i].mappedXDistance = 0;
     cloneArray[i].output = 0;
-  }let gh = []
-  for(let i = 0; i < tempArray.length; i++) {
-    gh.push(cloneArray[i].neuralModel.synapses[0].weight)
-
-  } //print(gh)
+  }
+  
   for (let i = tempArray.length - 1; i < population; i++) {
     let randomFather = Math.round(Math.random() * (tempArray.length - 1))
     let randomMother = Math.round(Math.random() * (tempArray.length - 1))
