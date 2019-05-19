@@ -34,7 +34,6 @@ function setup() {
       cloneArray.push(new clone());
     }
   }
-
   button = createButton('log weights of top scoring clone')
   button.mousePressed(logWeights);
 }
