@@ -26,12 +26,6 @@ async function updateDistanceParameters(clone) {
 }
 //clone functionality
 async function drawClone(clone) {
-  /*if(clone.output > 0.5) {
-  fill(0,0,255)
-  } else {
-    fill(255,0,0)
-  }*/
-  rect(100,clone.yDistance,10,10)
   fill(255, 255, 0);
   ellipse(clone.x, clone.y, clone.size, clone.size);
 
