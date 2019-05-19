@@ -19,12 +19,10 @@ async function draw() {
           if (tubes[i].isColllision(cloneArray[j])) {
             cloneArray[j].status = 'dead';
             deadAmount++;
-          } //else if (cloneArray[j].y <= 1 || cloneArray[j].y >= 399) {
-            //deadAmount++;
-            //cloneArray[j].status = 'dead';
-          //} 
-        else {
-            //updateDistanceParameters(cloneArray[j])          
+          } else if (cloneArray[j].y <= 1 || cloneArray[j].y >= 399) {
+            deadAmount++;
+            cloneArray[j].status = 'dead';
+          } else {
           if (frameCount % 1 === 0) {
             await calculateOutput(cloneArray[j]);
           }

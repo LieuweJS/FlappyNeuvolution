@@ -135,5 +135,19 @@ function sigmoid(x) {
 }
 
 function normalise(x) {
-  return x / 2 / (1 + Math.abs(x) * 0.5) //1 + Math.pow(Math.E, -x)
+  return x / 2 / (1 + Math.abs(x) * 0.5)
+}
+
+function logWeights() {
+  let savedIndex = 0;
+  let synapsesArray = [];
+  for(let i = 1; i < cloneArray.length-1; i++) {
+    if(cloneArray[i].score > cloneArray[i-1].score) {
+      savedIndex = i;
+    }
+  }
+  for(let i = 0; i < cloneArray[savedIndex].neuralModel.synapses.length; i++) {
+    synapsesArray.push(cloneArray[savedIndex].neuralModel.synapses[i].weight)
+  }  
+  console.log(synapsesArray)
 }
