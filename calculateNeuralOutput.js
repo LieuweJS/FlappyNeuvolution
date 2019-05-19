@@ -1,4 +1,4 @@
-function getOutput(model, inputValues) {
+async function getOutput(model, inputValues) {
   this.output = []
   let k = 0;
   let output = 0;
@@ -7,7 +7,7 @@ function getOutput(model, inputValues) {
     //loop for the amount of neurons in each layer
     for (let j = 0; j < model.layers[i].neurons.length; j++) {
       let z = 0;
-      if (i === model.layers.length - 1) { //apply bias at the last hidden layer   
+      if (i === model.layers.length - 1) { //apply bias at the last hidden layer
         for (let l = 0; l < model.layers[i].connectionsToEachNeuron; l++) {
           if (model.layers.length === 1) {
             z += model.layers[i].neurons[l].weight * model.synapses[k].weight
@@ -31,7 +31,7 @@ function getOutput(model, inputValues) {
         }
         model.layers[i].neurons[j].weight = ELU(z);
       }
-    } 
+    }
   }
   //calculate output
   for (let j = 0; j < model.outputs.length; j++) {

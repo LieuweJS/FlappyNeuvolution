@@ -39,7 +39,7 @@ async function drawClone(clone) {
 }
 async function calculateOutput(clone) {
   await updateDistanceParameters(clone)
-  clone.output = getOutput(clone.neuralModel, [clone.yDistance, clone.velo])
+  clone.output = await getOutput(clone.neuralModel, [clone.yDistance, clone.velo])
   if (clone.output > 0.5) {
     clone.velo += clone.lift;
   }
