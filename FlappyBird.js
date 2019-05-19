@@ -59,13 +59,12 @@ async function reset() {
   generation++;
   deadAmount = 0;
   score = 0;
-  sortCloneArray()
+  cloneArray.sort((a, b) => (a.score < b.score) ? 1 : -1)
   console.log(cloneArray)
-  console.log('e')
-  try {
+  //try {
     //await makeNewGen();
-  } catch (error) {
+  //} catch (error) {
     //checkForReset()
-    generation -= 1
-  }
+  //  generation -= 1
+  //}
 }

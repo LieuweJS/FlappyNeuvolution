@@ -1,7 +1,7 @@
 //makes a new generation of clones
 async function makeNewGen() {
   let tempArray = [];
-  //cloneArray.sort(sortByProperty('-score'))
+  //sortCloneArray()
   const winner = JSON.parse(JSON.stringify(cloneArray[0].neuralModel));
   for(let i = 0; i < Math.round(population / 10); i++) {
     tempArray.push(winner);
@@ -77,29 +77,17 @@ function randNum(min, max) {
   return Math.floor(min + Math.random() * (max + 1 - min))
 }
 
-function sortByProperty(property) {
-  let sortOrder = 1;
-  if (property[0] === "-") {
-    sortOrder = -1;
-    property = property.substr(1);
-  }
-  return function(a, b) {
-    const result = (a[property] < b[property]) ? -1 : (a[property] > b[property]) ? 1 : 0;
-    return result * sortOrder;
-  }
-}
-
 function sortCloneArray() {
   const length = cloneArray.length;
 
   for(let i = 1; i < length; i++) {
     let key = cloneArray[i].score;
     let j = i - 1;
-    while(j >= 0 && key < cloneArray[j].score) {
-      cloneArray[j + 1].score = cloneArray[j].score;
+    while(j >= 0 && key < cloneArray[j]) {
+      cloneArray[j + 1] = cloneArray[j];
       j -= 1;
     }
-    cloneArray[j + 1].score = key;
+    cloneArray[j + 1]= cloneArray[i];
   }
   return;
 }
