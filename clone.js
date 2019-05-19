@@ -26,28 +26,27 @@ async function updateDistanceParameters(clone) {
 }
 //clone functionality
 async function drawClone(clone) {
-  //fill(255, 255, 0);
-  if(clone.output > 0.5) { 
+  /*if(clone.output > 0.5) {
   fill(0,0,255)
-  } else { 
+  } else {
     fill(255,0,0)
-  }
+  }*/
   rect(100,clone.yDistance,10,10)
-  fill(255, 255, 0);    
+  fill(255, 255, 0);
   ellipse(clone.x, clone.y, clone.size, clone.size);
-  
+
   return;
 }
 async function calculateOutput(clone) {
   await updateDistanceParameters(clone)
   clone.output = getOutput(clone.neuralModel, [clone.yDistance, clone.velo])
   if (clone.output > 0.5) {
-    clone.velo += clone.lift; 
+    clone.velo += clone.lift;
   }
   return;
 }
 
-async function updatePosition(clone) {  
+async function updatePosition(clone) {
   clone.velo += clone.gravity;
   clone.y += clone.velo;
   if (clone.y > height) {
