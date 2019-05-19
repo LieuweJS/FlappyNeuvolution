@@ -51,7 +51,7 @@ async function draw() {
 async function checkForReset() {
   if (deadAmount === population) {
     await reset();
-    return noLoop()
+    //return noLoop()
   }
 }
 

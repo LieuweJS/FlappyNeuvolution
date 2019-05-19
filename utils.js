@@ -2,14 +2,7 @@
 async function makeNewGen() {
   let tempArray = [];
   cloneArray.sort((a, b) => (a.score < b.score) ? 1 : -1)
-  let gh = []
-  for(let i = 0; i < cloneArray.length; i++) {
-    gh.push(cloneArray[i].score)
-
-  }
-  console.log(gh)
   const winner = JSON.parse(JSON.stringify(cloneArray[0].neuralModel));
-  console.log(cloneArray)
   for(let i = 0; i < Math.round(population / 10); i++) {
     tempArray.push(winner);
   }
@@ -24,7 +17,9 @@ async function makeNewGen() {
   }
 
   for (let i = 0; i < tempArray.length; i++) {
-    cloneArray[i].neuralModel = tempArray[i];
+    for(let j = 0; j < cloneArray[i].neuralModel.synapses.length; j++) {
+      cloneArray[i].neuralModel.synapses[j].weight = tempArray[i].synapses[j].weight;
+    }
     cloneArray[i].status = 'alive';
     cloneArray[i].x = width / 4;
     cloneArray[i].y = height / 2;
@@ -34,7 +29,11 @@ async function makeNewGen() {
     cloneArray[i].xDistance = 0;
     cloneArray[i].mappedXDistance = 0;
     cloneArray[i].output = 0;
-  }
+  }let gh = []
+  for(let i = 0; i < tempArray.length; i++) {
+    gh.push(cloneArray[i].neuralModel.synapses[0].weight)
+
+  } //print(gh)
   for (let i = tempArray.length - 1; i < population; i++) {
     let randomFather = Math.round(Math.random() * (tempArray.length - 1))
     let randomMother = Math.round(Math.random() * (tempArray.length - 1))
