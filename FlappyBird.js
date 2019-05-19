@@ -51,6 +51,7 @@ async function draw() {
 async function checkForReset() {
   if (deadAmount === population) {
     await reset();
+    return noLoop()
   }
 }
 
@@ -59,8 +60,6 @@ async function reset() {
   generation++;
   deadAmount = 0;
   score = 0;
-  cloneArray.sort((a, b) => (a.score < b.score) ? 1 : -1)
-  //console.log(cloneArray)
   try {
     await makeNewGen();
   } catch (error) {

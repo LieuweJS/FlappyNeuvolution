@@ -1,8 +1,15 @@
 //makes a new generation of clones
 async function makeNewGen() {
   let tempArray = [];
-  //sortCloneArray()
+  cloneArray.sort((a, b) => (a.score < b.score) ? 1 : -1)
+  let gh = []
+  for(let i = 0; i < cloneArray.length; i++) {
+    gh.push(cloneArray[i].score)
+
+  }
+  console.log(gh)
   const winner = JSON.parse(JSON.stringify(cloneArray[0].neuralModel));
+  console.log(cloneArray)
   for(let i = 0; i < Math.round(population / 10); i++) {
     tempArray.push(winner);
   }
@@ -46,7 +53,6 @@ async function makeNewGen() {
   }
   tempArray = []
   cloneArray[0].neuralModel = winner;
-  //console.log(cloneArray)
 }
 
 async function breed(father, mother) {
