@@ -46,7 +46,7 @@ async function makeNewGen() {
   }
   tempArray = []
   cloneArray[0].neuralModel = winner;
-  console.log(cloneArray)
+  //console.log(cloneArray)
 }
 
 async function breed(father, mother) {
