@@ -2,20 +2,17 @@ async function draw() {
   background(10, 50, 200);
   for (let i = 0; i < tubes.length; i++) {
     rect((tubes[i].x + tubes[i].width), (tubes[i].height + 65), 10, 10);
-    tubes[i].drawTube();
-    tubes[i].updatePosition();
-    if (tubes[i].isOffscreen() === true) {
+    await tubes[i].drawTube();
+    await tubes[i].updatePosition();
+    if (await tubes[i].isOffscreen() === true) {
       tubes.splice(i, 1);
     }
     if (deadAmount < population) {
       for (let j = 0; j < cloneArray.length; j++) {
         if (cloneArray[j].status === 'alive') {
-          if (tubes[i].isColllision(cloneArray[j])) {
+          if (await tubes[i].isColllision(cloneArray[j])) {
             cloneArray[j].status = 'dead';
             deadAmount++;
-          } else if (cloneArray[j].y <= 1 || cloneArray[j].y >= 399) {
-            deadAmount++;
-            cloneArray[j].status = 'dead';
           } else {
           if (frameCount % 1 === 0) {
             await calculateOutput(cloneArray[j]);
@@ -45,12 +42,12 @@ async function draw() {
   text('generation: ' + generation, 0, 30);
   text('current population: ' + living, 0, 45);
   text('highscore: ' + highscore, 0, 60);
-  checkForReset();
+  await checkForReset();
 }
 
-function checkForReset() {
+async function checkForReset() {
   if (deadAmount === population) {
-    reset();
+    await reset();
   }
 }
 
@@ -60,11 +57,12 @@ async function reset() {
   deadAmount = 0;
   score = 0;
   cloneArray.sort((a, b) => (a.score < b.score) ? 1 : -1)
-  console.log(cloneArray)
-  //try {
-    //await makeNewGen();
-  //} catch (error) {
-    //checkForReset()
-  //  generation -= 1
-  //}
+  //console.log(cloneArray)
+  try {
+    await makeNewGen();
+  } catch (error) {
+    console.log(error)
+    checkForReset()
+    generation -= 1
+  }
 }

@@ -48,7 +48,7 @@ function Model(inputs, layers, outputs) {
   }
   this.synapsesAmount = (inputs * layers[0]) + this.synapsesInHiddenLayers + (outputs * layers[layerLength - 1]);
   for(let i = 0; i < this.synapsesAmount; i++) {
-    this.synapses.push(new synapse()); 
+    this.synapses.push(new synapse());
   }
   delete this.neurons;
   delete this.layer

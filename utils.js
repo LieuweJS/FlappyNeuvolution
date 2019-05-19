@@ -46,13 +46,14 @@ async function makeNewGen() {
   }
   tempArray = []
   cloneArray[0].neuralModel = winner;
+  console.log(cloneArray)
 }
 
 async function breed(father, mother) {
   for (let i = 0; i < father.synapses.length; i++) {
     let dna = Math.round(Math.random())
     if (dna === 1) {
-      father.synapses[i] = mother.synapses[i];
+      father.synapses[i].weight = mother.synapses[i].weight;
     }
   }
   return father;
@@ -61,10 +62,11 @@ async function breed(father, mother) {
 async function mutate(network) {
   const length = Math.round(network.synapses.length / mutationRate)
   for (let i = 0; i < length; i++) {
-    let randomChange = Math.floor(Math.random() * network.synapses.length - 1)
+    let randomChange = Math.floor(Math.random() * (network.synapses.length - 1))
     let randomValue = randNum(0 - mutationRange, mutationRange)
     //const randomChoice = Math.floor(Math.random() * network.synapses.length-1)
-    network.synapses[randomChange] += randomValue;
+    //bug here
+    network.synapses[randomChange].weight += randomValue;
   }
   return network
 }
@@ -75,21 +77,6 @@ const mapNum = (num, in_min, in_max, out_min, out_max) => {
 
 function randNum(min, max) {
   return Math.floor(min + Math.random() * (max + 1 - min))
-}
-
-function sortCloneArray() {
-  const length = cloneArray.length;
-
-  for(let i = 1; i < length; i++) {
-    let key = cloneArray[i].score;
-    let j = i - 1;
-    while(j >= 0 && key < cloneArray[j]) {
-      cloneArray[j + 1] = cloneArray[j];
-      j -= 1;
-    }
-    cloneArray[j + 1]= cloneArray[i];
-  }
-  return;
 }
 
 function SELU6(x) {
