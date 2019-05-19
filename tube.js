@@ -28,9 +28,7 @@ function tube() {
       if (clone.x >= this.x && clone.x <= (this.x + this.width)) {
         return true;
       }
-    } else if(clone.y <= 1 || clone.y >= 399) {
-      return true;
-    }
+    } 
     return false;
   }
 }

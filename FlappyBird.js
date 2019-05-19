@@ -13,14 +13,17 @@ async function draw() {
           if (await tubes[i].isColllision(cloneArray[j])) {
             cloneArray[j].status = 'dead';
             deadAmount++;
+          } else if(cloneArray[j].y <= 0 || cloneArray[j].y >= 400) {
+            cloneArray[j].status = 'dead';
+            deadAmount++;
           } else {
-          if (frameCount % 1 === 0) {
-            await calculateOutput(cloneArray[j]);
-          }
-          await updatePosition(cloneArray[j]);
-          await drawClone(cloneArray[j])
-          cloneArray[j].score = score;
-          continue;
+            if (frameCount % 1 === 0) {
+              await calculateOutput(cloneArray[j]);
+            }
+            await updatePosition(cloneArray[j]);
+            await drawClone(cloneArray[j])
+            cloneArray[j].score = score;
+            //continue;
           }
         }
       }
