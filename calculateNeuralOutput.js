@@ -41,8 +41,8 @@ async function getOutput(model, inputValues) {
       output += model.layers[model.layers.length - 1].neurons[i].weight * model.synapses[k].weight;
       k++
     }
-    this.output.push((normalise(output)))
-    model.outputs[j] = (normalise(output))
+    this.output.push((await normalise(output)))
+    model.outputs[j] = (await normalise(output))
   }
   return this.output;
 }

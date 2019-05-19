@@ -1,4 +1,4 @@
-//makes a new generation of clones 
+//makes a new generation of clones
 function makeNewGen() {
   let tempArray = [];
   cloneArray.sort(sortByProperty('-score'))
@@ -134,7 +134,7 @@ function sigmoid(x) {
   return 1 / (1 + Math.pow(Math.E, -x));
 }
 
-function normalise(x) {
+async function normalise(x) {
   return x / 2 / (1 + Math.abs(x) * 0.5)
 }
 
@@ -148,6 +148,6 @@ function logWeights() {
   }
   for(let i = 0; i < cloneArray[savedIndex].neuralModel.synapses.length; i++) {
     synapsesArray.push(cloneArray[savedIndex].neuralModel.synapses[i].weight)
-  }  
+  }
   console.log(synapsesArray)
 }
