@@ -27,7 +27,7 @@ async function draw() {
             await calculateOutput(cloneArray[j]);
           }
           await updatePosition(cloneArray[j]);
-          await drawClone(cloneArray[j])    
+          await drawClone(cloneArray[j])
           }
         }
       }
@@ -54,17 +54,15 @@ async function draw() {
 
 function checkForReset() {
   if (deadAmount === population) {
-    generation++;
-    deadAmount = 0;
-    score = 0;
-    reset();    
+    reset();
   }
 }
 
 function reset() {
   tubes = [];
-  score = 0;
+  generation++;
   deadAmount = 0;
+  score = 0;
   try {
     makeNewGen();
   } catch (error) {

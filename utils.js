@@ -3,6 +3,9 @@ function makeNewGen() {
   let tempArray = [];
   cloneArray.sort(sortByProperty('-score'))
   const winner = JSON.parse(JSON.stringify(cloneArray[0].neuralModel));
+  for(let i = 0; i < Math.round(population / 10); i++) {
+    tempArray.push(winner);
+  }
   for (let i = 0; i < Math.round(population / 20); i++) {
     let a = JSON.parse(JSON.stringify(cloneArray[i].neuralModel));
     tempArray.push(a)
@@ -56,7 +59,8 @@ function breed(father, mother) {
 }
 
 function mutate(network) {
-  for (let i = 0; i < Math.round(network.synapses.length / mutationRate); i++) {
+  const length = Math.round(network.synapses.length / mutationRate)
+  for (let i = 0; i < length; i++) {
     let randomChange = Math.floor(Math.random() * network.synapses.length - 1)
     let randomValue = randNum(0 - mutationRange, mutationRange)
     //const randomChoice = Math.floor(Math.random() * network.synapses.length-1)
