@@ -109,7 +109,7 @@ function logWeights() {
   console.log(synapsesArray);
 }
 
-async function drawNetwork(network) {
+async function drawNetwork(network, output) {
   let totalOutputs = network.outputs.length;
   let totalLayers = network.layers.length;
   let totalInputs = network.inputs.length;
@@ -133,11 +133,9 @@ async function drawNetwork(network) {
     }
   }
   const maxNodeHeight = (height / (biggest + 1)) / 2
-  //in, hidden, out, extra
   let incrementX = (width / 2) / (1 + totalLayers + 2)
   let x = width / 2 + incrementX;
 
-  //draw the nodes
   distBetweenNodes = height / network.inputs.length;
   y = distBetweenNodes / 2;
   let coordinateModel = new CoordinateModel;
@@ -175,6 +173,11 @@ async function drawNetwork(network) {
       'y': y
     }
     coordinateModel.outputs.push(outputLocation);
+    if(output > 0.5) {
+      fill(0,255,0)
+    } else {
+      fill(255,0,0)
+    }
     ellipse(x, y, maxNodeHeight);
     y += distBetweenNodes;
   }
