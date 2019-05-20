@@ -51,9 +51,9 @@ function Model(inputs, layers, outputs) {
     this.synapses.push(new synapse());
   }
   delete this.neurons;
-  delete this.layer
+  delete this.layer;
   delete this.synapsesInHiddenLayers;
-  delete this.synapsesAmount
+  delete this.synapsesAmount;
 }
 
 function neuron() {

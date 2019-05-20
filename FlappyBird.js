@@ -3,7 +3,7 @@ async function draw() {
   fill(255);
   rect(width/2, -1, width/2, height + 1);
 
-  await drawNetwork(cloneArray[0].neuralModel, cloneArray[0].output)
+  await drawNetwork(cloneArray[0].neuralModel, cloneArray[0].output);
   for (let i = 0; i < tubes.length; i++) {
     await tubes[i].drawTube();
     await tubes[i].updatePosition();
@@ -25,7 +25,7 @@ async function draw() {
               await calculateOutput(cloneArray[j]);
             }
             await updatePosition(cloneArray[j]);
-            await drawClone(cloneArray[j])
+            await drawClone(cloneArray[j]);
             cloneArray[j].score = score;
           }
         }
@@ -65,8 +65,8 @@ async function reset() {
   try {
     await makeNewGen();
   } catch (error) {
-    console.log(error)
-    reset()
-    generation -= 1
+    console.log(error);
+    reset();
+    generation -= 1;
   }
 }

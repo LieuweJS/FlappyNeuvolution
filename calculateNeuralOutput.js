@@ -1,5 +1,5 @@
 async function getOutput(model, inputValues) {
-  this.output = []
+  this.output = [];
   let k = 0;
   let output = 0;
   //loop for the amount of layers
@@ -10,24 +10,24 @@ async function getOutput(model, inputValues) {
       if (i === model.layers.length - 1) { //apply bias at the last hidden layer
         for (let l = 0; l < model.layers[i].connectionsToEachNeuron; l++) {
           if (model.layers.length === 1) {
-            z += model.layers[i].neurons[l].weight * model.synapses[k].weight
+            z += model.layers[i].neurons[l].weight * model.synapses[k].weight;
             break;
           } else {
-            z += model.layers[i - 1].neurons[l].weight * model.synapses[k].weight
-            k++
+            z += model.layers[i - 1].neurons[l].weight * model.synapses[k].weight;
+            k++;
           }
         }
         model.layers[i].neurons[j].weight = ELU(z + model.bias);
       } else if (i === 0) { //if this is the first hidden layer
         for (let l = 0; l < model.layers[i].connectionsToEachNeuron; l++) {
-          z += inputValues[l] * model.synapses[k].weight
-          k++
+          z += inputValues[l] * model.synapses[k].weight;
+          k++;
         }
         model.layers[i].neurons[j].weight = ELU(z);
       } else {
         for (let l = 0; l < model.layers[i].connectionsToEachNeuron; l++) {
-          z += model.layers[i - 1].neurons[l].weight * model.synapses[k].weight
-          k++
+          z += model.layers[i - 1].neurons[l].weight * model.synapses[k].weight;
+          k++;
         }
         model.layers[i].neurons[j].weight = ELU(z);
       }
@@ -39,10 +39,10 @@ async function getOutput(model, inputValues) {
     //loop for amount of connections to the output node
     for (let i = 0; i < model.layers[model.layers.length - 1].neurons.length; i++) {
       output += model.layers[model.layers.length - 1].neurons[i].weight * model.synapses[k].weight;
-      k++
+      k++;
     }
-    this.output.push((await normalise(output)))
-    model.outputs[j] = (await normalise(output))
+    this.output.push((await normalise(output)));
+    model.outputs[j] = (await normalise(output));
   }
   return this.output;
 }

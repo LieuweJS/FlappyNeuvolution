@@ -16,7 +16,7 @@ async function updateDistanceParameters(clone) {
   for (let i = 0; i < tubes.length; i++) {
     if (clone.x < tubes[i].x + tubes[i].width) {
       clone.yDistance = clone.y - ((tubes[i].height) + 65);
-      return
+      return;
     }
   }
 }
@@ -28,8 +28,8 @@ async function drawClone(clone) {
   return;
 }
 async function calculateOutput(clone) {
-  await updateDistanceParameters(clone)
-  clone.output = await getOutput(clone.neuralModel, [clone.yDistance, clone.velo])
+  await updateDistanceParameters(clone);
+  clone.output = await getOutput(clone.neuralModel, [clone.yDistance, clone.velo]);
   if (clone.output > 0.5) {
     clone.velo += clone.lift;
   }
