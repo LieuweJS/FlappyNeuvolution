@@ -110,9 +110,6 @@ function logWeights() {
 }
 
 function drawNetwork(network) {
-  /*
-  to calculate the size of each drawn node remember the biggest number
-  */
   let totalOutputs = network.outputs.length;
   let totalLayers = network.layers.length;
   let totalInputs = network.inputs.length;
@@ -182,12 +179,10 @@ function drawNetwork(network) {
     y += distBetweenNodes;
   }
   console.log(coordinateModel);
-  //draw the synapses
   let q = 0;
-  while (q < network.synapses.length - 2) {
     for (let i = 0; i < network.layers.length; i++) {
       for (let j = 0; j < network.layers[i].neurons.length; j++) {
-        if (i === 0) { //this is the first neuron layer
+        if (i === 0) {
           let currentNodeX = coordinateModel.layers[i].neurons[j].x;
           let currentNodeY = coordinateModel.layers[i].neurons[j].y;
           for (let k = 0; k < network.inputs.length; k++) {
@@ -218,7 +213,6 @@ function drawNetwork(network) {
         }
       }
     }
-    //here go the outputs
     for(let i = 0; i < network.outputs.length; i++) {
       let currentNodeX = coordinateModel.outputs[i].x;
       let currentNodeY = coordinateModel.outputs[i].y;
@@ -234,7 +228,6 @@ function drawNetwork(network) {
         q++
       }
     }
-  }
   stroke(0)
 }
 
