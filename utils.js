@@ -8,7 +8,7 @@ async function makeNewGen() {
   }
   for (let i = 0; i < Math.round(population / 20); i++) {
     let a = JSON.parse(JSON.stringify(cloneArray[i].neuralModel));
-    tempArray.push(a)
+    tempArray.push(a);
   }
 
   for (let i = 0; i < tempArray.length; i++) {
@@ -27,11 +27,11 @@ async function makeNewGen() {
   }
 
   for (let i = tempArray.length - 1; i < population; i++) {
-    let randomFather = Math.round(Math.random() * (tempArray.length - 1))
-    let randomMother = Math.round(Math.random() * (tempArray.length - 1))
-    let d = await breed(tempArray[randomFather], tempArray[randomMother])
-    let mutated = await mutate(d)
-    cloneArray[i].neuralModel = mutated
+    let randomFather = Math.round(Math.random() * (tempArray.length - 1));
+    let randomMother = Math.round(Math.random() * (tempArray.length - 1));
+    let d = await breed(tempArray[randomFather], tempArray[randomMother]);
+    let mutated = await mutate(d);
+    cloneArray[i].neuralModel = mutated;
     cloneArray[i].status = 'alive';
     cloneArray[i].x = width / 32;
     cloneArray[i].y = height / 2;
@@ -57,19 +57,19 @@ async function breed(father, mother) {
 }
 
 async function mutate(network) {
-  const length = Math.round(network.synapses.length / mutationRate)
+  const length = Math.round(network.synapses.length / mutationRate);
   for (let i = 0; i < network.synapses.length; i++) {
     if (Math.random() <= mutationRate) {
-      let randomValue = randNum(0 - mutationRange, mutationRange)
+      let randomValue = randNum(0 - mutationRange, mutationRange);
       network.synapses[i].weight += randomValue;
       if (network.synapses[i].weight > 1) {
-        network.synapses[i].weight = 1
+        network.synapses[i].weight = 1;
       } else if (network.synapses[i].weight < -1) {
-        network.synapses[i].weight = -1
+        network.synapses[i].weight = -1;
       }
     }
   }
-  return network
+  return network;
 }
 //UTILS
 const mapNum = (num, in_min, in_max, out_min, out_max) => {
@@ -92,7 +92,7 @@ function ELU(x) {
 }
 
 async function normalise(x) {
-  return x / 2 / (1 + Math.abs(x) * 0.5)
+  return x / 2 / (1 + Math.abs(x) * 0.5);
 }
 
 function logWeights() {
@@ -104,9 +104,9 @@ function logWeights() {
     }
   }
   for (let i = 0; i < cloneArray[savedIndex].neuralModel.synapses.length; i++) {
-    synapsesArray.push(cloneArray[savedIndex].neuralModel.synapses[i].weight)
+    synapsesArray.push(cloneArray[savedIndex].neuralModel.synapses[i].weight);
   }
-  console.log(synapsesArray)
+  console.log(synapsesArray);
 }
 
 function drawNetwork(network) {
@@ -125,10 +125,10 @@ function drawNetwork(network) {
     }
     totalNeurons.push(thisLayer);
   }
-  totalNeurons.sort(sortDescend)
+  totalNeurons.sort(sortDescend);
   let biggest = totalInputs;
   if (totalOutputs > totalInputs) {
-    biggest = totalOutputs
+    biggest = totalOutputs;
   }
   for (let i = 0; i < totalNeurons.length; i++) {
     if (totalNeurons[i] > biggest) {
@@ -149,9 +149,9 @@ function drawNetwork(network) {
       'x': x,
       'y': y
     }
-    coordinateModel.inputs.push(inputLocation)
-    ellipse(x, y, maxNodeHeight)
-    y += distBetweenNodes
+    coordinateModel.inputs.push(inputLocation);
+    ellipse(x, y, maxNodeHeight);
+    y += distBetweenNodes;
   }
   x += incrementX
   for (let i = 0; i < totalLayers; i++) {
@@ -163,12 +163,12 @@ function drawNetwork(network) {
         'x': x,
         'y': y
       }
-      layerCoordinates.neurons.push(neuronLocation)
-      ellipse(x, y, maxNodeHeight)
-      y += distBetweenNodes
+      layerCoordinates.neurons.push(neuronLocation);
+      ellipse(x, y, maxNodeHeight);
+      y += distBetweenNodes;
     }
-    coordinateModel.layers.push(layerCoordinates)
-    x += incrementX
+    coordinateModel.layers.push(layerCoordinates);
+    x += incrementX;
   }
   distBetweenNodes = height / network.outputs.length;
   y = distBetweenNodes / 2;
@@ -177,9 +177,9 @@ function drawNetwork(network) {
       'x': x,
       'y': y
     }
-    coordinateModel.outputs.push(outputLocation)
-    ellipse(x, y, maxNodeHeight)
-    y += distBetweenNodes
+    coordinateModel.outputs.push(outputLocation);
+    ellipse(x, y, maxNodeHeight);
+    y += distBetweenNodes;
   }
   console.log(coordinateModel);
   //draw the synapses
@@ -199,9 +199,7 @@ function drawNetwork(network) {
             let connectedNodeX = coordinateModel.inputs[k].x;
             let connectedNodeY = coordinateModel.inputs[k].y;
             line(currentNodeX, currentNodeY, connectedNodeX, connectedNodeY);
-            //console.log(network.synapses[q].weight)
-            q++
-            console.log(q)
+            q++;
           }
         } else {
           let currentNodeX = coordinateModel.layers[i].neurons[j].x;
@@ -215,21 +213,29 @@ function drawNetwork(network) {
             let connectedNodeX = coordinateModel.layers[i-1].neurons[k].x;
             let connectedNodeY = coordinateModel.layers[i-1].neurons[k].y;
             line(currentNodeX, currentNodeY, connectedNodeX, connectedNodeY);
-            //console.log(network.synapses[q].weight)
-            q++
-            console.log(q)
+            q++;
           }
-
         }
-
       }
-
-
+    }
+    //here go the outputs
+    for(let i = 0; i < network.outputs.length; i++) {
+      let currentNodeX = coordinateModel.outputs[i].x;
+      let currentNodeY = coordinateModel.outputs[i].y;
+      for(let j = 0; j < network.layers[network.layers.length -1].neurons.length; j++) {
+        if(network.synapses[q].weight < 0) {
+          stroke(0,0,255);
+        } else {
+          stroke(255,0,0);
+        }
+        let connectedNodeX = coordinateModel.layers[network.layers.length - 1].neurons[j].x;
+        let connectedNodeY = coordinateModel.layers[network.layers.length - 1].neurons[j].y;
+        line(currentNodeX, currentNodeY, connectedNodeX, connectedNodeY);
+        q++
+      }
     }
   }
-  //for(let i = 0; i < network..length; i++) {}
-  //for(let i = 0; i < network..length; i++) {}
-  //for(let i = 0; i < network..length; i++) {}
+  stroke(0)
 }
 
 function LayerCoordinates() {
