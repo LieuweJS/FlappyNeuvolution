@@ -109,7 +109,7 @@ function logWeights() {
   console.log(synapsesArray);
 }
 
-function drawNetwork(network) {
+async function drawNetwork(network) {
   let totalOutputs = network.outputs.length;
   let totalLayers = network.layers.length;
   let totalInputs = network.inputs.length;
