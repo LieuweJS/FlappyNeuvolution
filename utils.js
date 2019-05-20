@@ -30,7 +30,7 @@ async function makeNewGen() {
     cloneArray[i].mappedXDistance = 0;
     cloneArray[i].output = 0;
   }
-  
+
   for (let i = tempArray.length - 1; i < population; i++) {
     let randomFather = Math.round(Math.random() * (tempArray.length - 1))
     let randomMother = Math.round(Math.random() * (tempArray.length - 1))
@@ -64,10 +64,9 @@ async function breed(father, mother) {
 async function mutate(network) {
   const length = Math.round(network.synapses.length / mutationRate)
   for (let i = 0; i < length; i++) {
-    let randomChange = Math.floor(Math.random() * (network.synapses.length - 1))
+    let randomChange = Math.floor(Math.random() * (network.synapses.length))
     let randomValue = randNum(0 - mutationRange, mutationRange)
-    //const randomChoice = Math.floor(Math.random() * network.synapses.length-1)
-    //bug here
+
     network.synapses[randomChange].weight += randomValue;
   }
   return network
