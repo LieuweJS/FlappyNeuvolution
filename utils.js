@@ -10,11 +10,11 @@ async function makeNewGen() {
     let a = JSON.parse(JSON.stringify(cloneArray[i].neuralModel));
     tempArray.push(a)
   }
-  for (let i = 0; i < Math.round(population / 40); i++) {
+  /*for (let i = 0; i < Math.round(population / 40); i++) {
     let selectLoser = Math.round(Math.random() * Math.floor(population - (population / 40) + population / 40));
     let a = JSON.parse(JSON.stringify(cloneArray[selectLoser].neuralModel))
     tempArray.push(a);
-  }
+  }*/
 
   for (let i = 0; i < tempArray.length; i++) {
     for(let j = 0; j < cloneArray[i].neuralModel.synapses.length; j++) {
