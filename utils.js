@@ -143,7 +143,10 @@ function drawNetwork(network) {
   //draw the nodes
   distBetweenNodes = height/network.inputs.length;
   y = distBetweenNodes/2;
+  let coordinateModel = new CoordinateModel;
   for(let i = 0; i < totalInputs; i++) {
+    let inputLocation = {'x': x,'y':y}
+    coordinateModel.inputs.push(inputLocation)
     ellipse(x,y,maxNodeHeight)
     y += distBetweenNodes
   }
@@ -151,26 +154,42 @@ function drawNetwork(network) {
   for (let i = 0; i < totalLayers; i++) {
     let distBetweenNodes = height/network.layers[i].neurons.length;
     let y = distBetweenNodes/2;
+    let layerCoordinates = new LayerCoordinates;
     for(let j = 0; j < totalNeurons[0]; j++) {
+      let neuronLocation = {'x': x,'y':y}
+      layerCoordinates.neurons.push(neuronLocation)
       ellipse(x,y,maxNodeHeight)
       y += distBetweenNodes
     }
+    coordinateModel.layers.push(layerCoordinates)
     x += incrementX
   }
   distBetweenNodes = height/network.outputs.length;
   y = distBetweenNodes/2;
   for(let i = 0; i < totalOutputs; i++) {
+    let outputLocation = {'x': x,'y':y}
+    coordinateModel.outputs.push(outputLocation)
     ellipse(x,y,maxNodeHeight)
     y += distBetweenNodes
   }
+  console.log(coordinateModel);
   //draw the synapses
-  //for() {
+  //for(let i = 0; i < totalSynapses; i++) {
 
   //}
   //for(let i = 0; i < network..length; i++) {}
   //for(let i = 0; i < network..length; i++) {}
   //for(let i = 0; i < network..length; i++) {}
 
+}
+function LayerCoordinates() {
+  this.neurons = []
+}
+
+function CoordinateModel() {
+  this.inputs = []
+  this.layers = []
+  this.outputs = []
 }
 
 function sortDescend(a,b) {
