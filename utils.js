@@ -68,6 +68,11 @@ async function mutate(network) {
     let randomValue = randNum(0 - mutationRange, mutationRange)
 
     network.synapses[randomChange].weight += randomValue;
+    if (network.synapses[randomChange].weight > 1) {
+      network.synapses[randomChange].weight = 1
+    } else if (network.synapses[randomChange].weight < -1) {
+      network.synapses[randomChange].weight = -1
+    }
   }
   return network
 }
