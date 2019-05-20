@@ -10,11 +10,6 @@ async function makeNewGen() {
     let a = JSON.parse(JSON.stringify(cloneArray[i].neuralModel));
     tempArray.push(a)
   }
-  /*for (let i = 0; i < Math.round(population / 40); i++) {
-    let selectLoser = Math.round(Math.random() * Math.floor(population - (population / 40) + population / 40));
-    let a = JSON.parse(JSON.stringify(cloneArray[selectLoser].neuralModel))
-    tempArray.push(a);
-  }*/
 
   for (let i = 0; i < tempArray.length; i++) {
     for(let j = 0; j < cloneArray[i].neuralModel.synapses.length; j++) {
@@ -85,40 +80,6 @@ function randNum(min, max) {
   return Math.floor(min + Math.random() * (max + 1 - min))
 }
 
-function SELU6(x) {
-  this.PReLU = function(a, x) {
-    if (x < 0) {
-      return a * x;
-    } else {
-      return x;
-    }
-  }
-  this.ELU = function(a, x) {
-    return this.PReLU(a, Math.expm1(x));
-  }
-  this.SELU = function(x) {
-    return 1.0507 * this.ELU(1.6732, x);
-  }
-  this.result = this.SELU(x);
-  if (this.result > 6) {
-    return 6
-  } else {
-    return x
-  }
-}
-
-function RELU6(x) {
-  if (x < 0) {
-    return 0;
-  } else {
-    if (x > 6) {
-      return 6;
-    } else {
-      return x;
-    }
-  }
-}
-
 function ELU(x) {
   this.PReLU = function(a, x) {
     if (x < 0) {
@@ -128,10 +89,6 @@ function ELU(x) {
     }
   }
   return this.PReLU(1.6732, Math.expm1(x));
-}
-
-function sigmoid(x) {
-  return 1 / (1 + Math.pow(Math.E, -x));
 }
 
 async function normalise(x) {

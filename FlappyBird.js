@@ -24,7 +24,6 @@ async function draw() {
             await updatePosition(cloneArray[j]);
             await drawClone(cloneArray[j])
             cloneArray[j].score = score;
-            //continue;
           }
         }
       }
@@ -52,7 +51,6 @@ async function draw() {
 async function checkForReset() {
   if (deadAmount === population) {
     await reset();
-    //return noLoop()
   }
 }
 
