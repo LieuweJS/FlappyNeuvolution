@@ -1,7 +1,7 @@
 function clone() {
   //clone permanent genetic information
   this.score = 0;
-  this.neuralModel = new Model(2,[5,5],1);
+  this.neuralModel = new Model(2,[5,7,3],1);
   this.size = height / 8;
   this.x = width / 4;
   this.y = height / 2;
@@ -11,6 +11,7 @@ function clone() {
   //clone non-genetic information
   this.status = 'alive';
   this.yDistance = 0;
+  //this.pipeHeight
   this.output = 0;
 }
 
@@ -19,10 +20,11 @@ async function updateDistanceParameters(clone) {
     if (clone.x < tubes[i].x + tubes[i].width) {
       rect(200, tubes[i].height + 65, 10,10)
       clone.yDistance = clone.y - ((tubes[i].height) + 65);
+      //clone.pipeHeight = (tubes[i].height + 65)
+      //rect(10,clone.pipeHeight,10,10)
       return
     }
   }
-  return
 }
 //clone functionality
 async function drawClone(clone) {

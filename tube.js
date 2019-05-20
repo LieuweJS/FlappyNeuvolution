@@ -2,7 +2,7 @@ function tube() {
   this.height = Math.floor(Math.random() * ((width - ((height / 4)))/1.5));
   this.x = width;
   this.gameSpeed = 2;
-  this.width = width / 20;
+  this.width = width / 8;
   this.y = height - this.height;
 
   this.updatePosition = async function() {
@@ -28,7 +28,7 @@ function tube() {
       if (clone.x >= this.x && clone.x <= (this.x + this.width)) {
         return true;
       }
-    } 
+    }
     return false;
   }
 }
