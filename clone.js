@@ -1,7 +1,7 @@
 function clone() {
   //clone permanent genetic information
   this.score = 0;
-  this.neuralModel = new Model(2,[5,7,3],1);
+  this.neuralModel = new Model(2,[5,5],1);
   this.size = height / 8;
   this.x = width / 4;
   this.y = height / 2;
