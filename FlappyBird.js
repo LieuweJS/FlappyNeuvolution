@@ -10,7 +10,7 @@ async function draw() {
     if (deadAmount < population) {
       for (let j = 0; j < cloneArray.length; j++) {
         if (cloneArray[j].status === 'alive') {
-          if (await tubes[i].isColllision(cloneArray[j])) {
+          if (tubes[i].isColllision(cloneArray[j])) {
             cloneArray[j].status = 'dead';
             deadAmount++;
           } else if(cloneArray[j].y <= 0 || cloneArray[j].y >= 400) {
@@ -34,7 +34,7 @@ async function draw() {
     }
     living = cloneArray.length - deadAmount;
   }
-  if (frameCount % 120 === 0) {
+  if (frameCount % 100/gameSpeed === 0) {
     tubes.push(new tube());
   }
 

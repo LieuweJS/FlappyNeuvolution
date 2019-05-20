@@ -16,7 +16,7 @@ async function makeNewGen() {
       cloneArray[i].neuralModel.synapses[j].weight = tempArray[i].synapses[j].weight;
     }
     cloneArray[i].status = 'alive';
-    cloneArray[i].x = width / 4;
+    cloneArray[i].x = width / 32;
     cloneArray[i].y = height / 2;
     cloneArray[i].score = 0;
     cloneArray[i].yDistance = 0;
@@ -33,7 +33,7 @@ async function makeNewGen() {
     let mutated = await mutate(d)
     cloneArray[i].neuralModel = mutated
     cloneArray[i].status = 'alive';
-    cloneArray[i].x = width / 4;
+    cloneArray[i].x = width / 32;
     cloneArray[i].y = height / 2;
     cloneArray[i].score = 0;
     cloneArray[i].yDistance = 0;

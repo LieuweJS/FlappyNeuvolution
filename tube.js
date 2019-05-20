@@ -1,18 +1,18 @@
 function tube() {
-  this.height = Math.floor(Math.random() * ((width - ((height / 4)))/1.5));
-  this.x = width;
-  this.gameSpeed = 2;
-  this.width = width / 8;
+  this.height = Math.floor(Math.random() * 250);
+  this.bottomHeight = this.height + 100
+  this.x = width/3;
+  this.width = width / 24;
   this.y = height - this.height;
 
   this.updatePosition = async function() {
-    this.x -= this.gameSpeed;
+    this.x -= gameSpeed;
   }
 
   this.drawTube = async function() {
     fill(0, 100, 20);
-    rect(this.x, height - (height - (this.height + (height / 4) * 1.5)), this.width, (height - (this.height + (height / 4) * 1.5)));
     rect(this.x, 0, this.width, this.height);
+    rect(this.x, this.bottomHeight, this.width, 400);
   }
 
   this.isOffscreen = async function() {
@@ -23,8 +23,8 @@ function tube() {
     }
   }
 
-  this.isColllision = async function(clone) {
-    if (clone.y < this.height || clone.y > height - (height - (this.height + (height / 4) * 1.5))) {
+  this.isColllision = function(clone) {
+    if (clone.y < this.height || clone.y > this.bottomHeight) {
       if (clone.x >= this.x && clone.x <= (this.x + this.width)) {
         return true;
       }
