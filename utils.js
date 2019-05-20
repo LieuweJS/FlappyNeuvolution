@@ -3,7 +3,7 @@ async function makeNewGen() {
   let tempArray = [];
   cloneArray.sort((a, b) => (a.score < b.score) ? 1 : -1)
   const winner = JSON.parse(JSON.stringify(cloneArray[0].neuralModel));
-  for(let i = 0; i < Math.round(population / 10); i++) {
+  for (let i = 0; i < Math.round(population / 10); i++) {
     tempArray.push(winner);
   }
   for (let i = 0; i < Math.round(population / 20); i++) {
@@ -12,7 +12,7 @@ async function makeNewGen() {
   }
 
   for (let i = 0; i < tempArray.length; i++) {
-    for(let j = 0; j < cloneArray[i].neuralModel.synapses.length; j++) {
+    for (let j = 0; j < cloneArray[i].neuralModel.synapses.length; j++) {
       cloneArray[i].neuralModel.synapses[j].weight = tempArray[i].synapses[j].weight;
     }
     cloneArray[i].status = 'alive';
@@ -98,12 +98,12 @@ async function normalise(x) {
 function logWeights() {
   let savedIndex = 0;
   let synapsesArray = [];
-  for(let i = 1; i < cloneArray.length-1; i++) {
-    if(cloneArray[i].score > cloneArray[i-1].score) {
+  for (let i = 1; i < cloneArray.length - 1; i++) {
+    if (cloneArray[i].score > cloneArray[i - 1].score) {
       savedIndex = i;
     }
   }
-  for(let i = 0; i < cloneArray[savedIndex].neuralModel.synapses.length; i++) {
+  for (let i = 0; i < cloneArray[savedIndex].neuralModel.synapses.length; i++) {
     synapsesArray.push(cloneArray[savedIndex].neuralModel.synapses[i].weight)
   }
   console.log(synapsesArray)
@@ -118,70 +118,120 @@ function drawNetwork(network) {
   let totalInputs = network.inputs.length;
   let totalSynapses = network.synapses.length;
   let totalNeurons = [];
-  for(let i = 0; i < totalLayers; i++) {
+  for (let i = 0; i < totalLayers; i++) {
     let thisLayer = 0;
-    for(let j = 0; j < network.layers[i].neurons.length; j++) {
+    for (let j = 0; j < network.layers[i].neurons.length; j++) {
       thisLayer++;
     }
     totalNeurons.push(thisLayer);
   }
   totalNeurons.sort(sortDescend)
   let biggest = totalInputs;
-  if(totalOutputs > totalInputs) {
+  if (totalOutputs > totalInputs) {
     biggest = totalOutputs
   }
-  for(let i = 0; i < totalNeurons.length; i++) {
-    if(totalNeurons[i] > biggest) {
+  for (let i = 0; i < totalNeurons.length; i++) {
+    if (totalNeurons[i] > biggest) {
       biggest = totalNeurons[i];
     }
   }
-  const maxNodeHeight = (height/(biggest+1))/2
+  const maxNodeHeight = (height / (biggest + 1)) / 2
   //in, hidden, out, extra
-  let incrementX = (width/2)/(1 + totalLayers + 2)
-  let x = width/2 + incrementX;
+  let incrementX = (width / 2) / (1 + totalLayers + 2)
+  let x = width / 2 + incrementX;
 
   //draw the nodes
-  distBetweenNodes = height/network.inputs.length;
-  y = distBetweenNodes/2;
+  distBetweenNodes = height / network.inputs.length;
+  y = distBetweenNodes / 2;
   let coordinateModel = new CoordinateModel;
-  for(let i = 0; i < totalInputs; i++) {
-    let inputLocation = {'x': x,'y':y}
+  for (let i = 0; i < totalInputs; i++) {
+    let inputLocation = {
+      'x': x,
+      'y': y
+    }
     coordinateModel.inputs.push(inputLocation)
-    ellipse(x,y,maxNodeHeight)
+    ellipse(x, y, maxNodeHeight)
     y += distBetweenNodes
   }
   x += incrementX
   for (let i = 0; i < totalLayers; i++) {
-    let distBetweenNodes = height/network.layers[i].neurons.length;
-    let y = distBetweenNodes/2;
+    let distBetweenNodes = height / network.layers[i].neurons.length;
+    let y = distBetweenNodes / 2;
     let layerCoordinates = new LayerCoordinates;
-    for(let j = 0; j < totalNeurons[0]; j++) {
-      let neuronLocation = {'x': x,'y':y}
+    for (let j = 0; j < totalNeurons[0]; j++) {
+      let neuronLocation = {
+        'x': x,
+        'y': y
+      }
       layerCoordinates.neurons.push(neuronLocation)
-      ellipse(x,y,maxNodeHeight)
+      ellipse(x, y, maxNodeHeight)
       y += distBetweenNodes
     }
     coordinateModel.layers.push(layerCoordinates)
     x += incrementX
   }
-  distBetweenNodes = height/network.outputs.length;
-  y = distBetweenNodes/2;
-  for(let i = 0; i < totalOutputs; i++) {
-    let outputLocation = {'x': x,'y':y}
+  distBetweenNodes = height / network.outputs.length;
+  y = distBetweenNodes / 2;
+  for (let i = 0; i < totalOutputs; i++) {
+    let outputLocation = {
+      'x': x,
+      'y': y
+    }
     coordinateModel.outputs.push(outputLocation)
-    ellipse(x,y,maxNodeHeight)
+    ellipse(x, y, maxNodeHeight)
     y += distBetweenNodes
   }
   console.log(coordinateModel);
   //draw the synapses
-  //for(let i = 0; i < totalSynapses; i++) {
+  let q = 0;
+  while (q < network.synapses.length - 2) {
+    for (let i = 0; i < network.layers.length; i++) {
+      for (let j = 0; j < network.layers[i].neurons.length; j++) {
+        if (i === 0) { //this is the first neuron layer
+          let currentNodeX = coordinateModel.layers[i].neurons[j].x;
+          let currentNodeY = coordinateModel.layers[i].neurons[j].y;
+          for (let k = 0; k < network.inputs.length; k++) {
+            if(network.synapses[q].weight < 0) {
+              stroke(0,0,255);
+            } else {
+              stroke(255,0,0);
+            }
+            let connectedNodeX = coordinateModel.inputs[k].x;
+            let connectedNodeY = coordinateModel.inputs[k].y;
+            line(currentNodeX, currentNodeY, connectedNodeX, connectedNodeY);
+            //console.log(network.synapses[q].weight)
+            q++
+            console.log(q)
+          }
+        } else {
+          let currentNodeX = coordinateModel.layers[i].neurons[j].x;
+          let currentNodeY = coordinateModel.layers[i].neurons[j].y;
+          for (let k = 0; k < network.layers[i - 1].neurons.length; k++) {
+            if(network.synapses[q].weight < 0) {
+              stroke(0,0,255);
+            } else {
+              stroke(255,0,0);
+            }
+            let connectedNodeX = coordinateModel.layers[i-1].neurons[k].x;
+            let connectedNodeY = coordinateModel.layers[i-1].neurons[k].y;
+            line(currentNodeX, currentNodeY, connectedNodeX, connectedNodeY);
+            //console.log(network.synapses[q].weight)
+            q++
+            console.log(q)
+          }
 
-  //}
-  //for(let i = 0; i < network..length; i++) {}
-  //for(let i = 0; i < network..length; i++) {}
-  //for(let i = 0; i < network..length; i++) {}
+        }
 
+      }
+
+
+    }
+  }
+  //for(let i = 0; i < network..length; i++) {}
+  //for(let i = 0; i < network..length; i++) {}
+  //for(let i = 0; i < network..length; i++) {}
 }
+
 function LayerCoordinates() {
   this.neurons = []
 }
