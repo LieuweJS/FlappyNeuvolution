@@ -108,3 +108,71 @@ function logWeights() {
   }
   console.log(synapsesArray)
 }
+
+function drawNetwork(network) {
+  /*
+  to calculate the size of each drawn node remember the biggest number
+  */
+  let totalOutputs = network.outputs.length;
+  let totalLayers = network.layers.length;
+  let totalInputs = network.inputs.length;
+  let totalSynapses = network.synapses.length;
+  let totalNeurons = [];
+  for(let i = 0; i < totalLayers; i++) {
+    let thisLayer = 0;
+    for(let j = 0; j < network.layers[i].neurons.length; j++) {
+      thisLayer++;
+    }
+    totalNeurons.push(thisLayer);
+  }
+  totalNeurons.sort(sortDescend)
+  let biggest = totalInputs;
+  if(totalOutputs > totalInputs) {
+    biggest = totalOutputs
+  }
+  for(let i = 0; i < totalNeurons.length; i++) {
+    if(totalNeurons[i] > biggest) {
+      biggest = totalNeurons[i];
+    }
+  }
+  const maxNodeHeight = (height/(biggest+1))/2
+  //in, hidden, out, extra
+  let incrementX = (width/2)/(1 + totalLayers + 2)
+  let x = width/2 + incrementX;
+
+  //draw the nodes
+  distBetweenNodes = height/network.inputs.length;
+  y = distBetweenNodes/2;
+  for(let i = 0; i < totalInputs; i++) {
+    ellipse(x,y,maxNodeHeight)
+    y += distBetweenNodes
+  }
+  x += incrementX
+  for (let i = 0; i < totalLayers; i++) {
+    let distBetweenNodes = height/network.layers[i].neurons.length;
+    let y = distBetweenNodes/2;
+    for(let j = 0; j < totalNeurons[0]; j++) {
+      ellipse(x,y,maxNodeHeight)
+      y += distBetweenNodes
+    }
+    x += incrementX
+  }
+  distBetweenNodes = height/network.outputs.length;
+  y = distBetweenNodes/2;
+  for(let i = 0; i < totalOutputs; i++) {
+    ellipse(x,y,maxNodeHeight)
+    y += distBetweenNodes
+  }
+  //draw the synapses
+  //for() {
+
+  //}
+  //for(let i = 0; i < network..length; i++) {}
+  //for(let i = 0; i < network..length; i++) {}
+  //for(let i = 0; i < network..length; i++) {}
+
+}
+
+function sortDescend(a,b) {
+   return b-a;
+ }

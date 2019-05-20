@@ -1,8 +1,8 @@
 function tube() {
   this.height = Math.floor(Math.random() * 250);
   this.bottomHeight = this.height + 100
-  this.x = width/3;
   this.width = width / 24;
+  this.x = width/2 - this.width;
   this.y = height - this.height;
 
   this.updatePosition = async function() {

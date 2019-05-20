@@ -1,5 +1,10 @@
 async function draw() {
+  console.log(cloneArray[0])
+  noLoop()
   background(10, 50, 200);
+  fill(255);
+  rect(width/2, -1, width/2, height + 1);
+  drawNetwork(cloneArray[0].neuralModel)
   for (let i = 0; i < tubes.length; i++) {
     rect((tubes[i].x + tubes[i].width), (tubes[i].height + 65), 10, 10);
     await tubes[i].drawTube();
