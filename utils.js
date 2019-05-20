@@ -63,15 +63,15 @@ async function breed(father, mother) {
 
 async function mutate(network) {
   const length = Math.round(network.synapses.length / mutationRate)
-  for (let i = 0; i < length; i++) {
-    let randomChange = Math.floor(Math.random() * (network.synapses.length))
-    let randomValue = randNum(0 - mutationRange, mutationRange)
-
-    network.synapses[randomChange].weight += randomValue;
-    if (network.synapses[randomChange].weight > 1) {
-      network.synapses[randomChange].weight = 1
-    } else if (network.synapses[randomChange].weight < -1) {
-      network.synapses[randomChange].weight = -1
+  for (let i = 0; i < network.synapses.length; i++) {
+    if (Math.random() <= mutationRate) {
+      let randomValue = randNum(0 - mutationRange, mutationRange)
+      network.synapses[i].weight += randomValue;
+      if (network.synapses[i].weight > 1) {
+        network.synapses[i].weight = 1
+      } else if (network.synapses[i].weight < -1) {
+        network.synapses[i].weight = -1
+      }
     }
   }
   return network

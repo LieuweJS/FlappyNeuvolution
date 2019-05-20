@@ -65,7 +65,7 @@ async function reset() {
     await makeNewGen();
   } catch (error) {
     console.log(error)
-    checkForReset()
+    reset()
     generation -= 1
   }
 }
