@@ -178,56 +178,55 @@ function drawNetwork(network) {
     ellipse(x, y, maxNodeHeight);
     y += distBetweenNodes;
   }
-  console.log(coordinateModel);
   let q = 0;
-    for (let i = 0; i < network.layers.length; i++) {
-      for (let j = 0; j < network.layers[i].neurons.length; j++) {
-        if (i === 0) {
-          let currentNodeX = coordinateModel.layers[i].neurons[j].x;
-          let currentNodeY = coordinateModel.layers[i].neurons[j].y;
-          for (let k = 0; k < network.inputs.length; k++) {
-            if(network.synapses[q].weight < 0) {
-              stroke(0,0,255);
-            } else {
-              stroke(255,0,0);
-            }
-            let connectedNodeX = coordinateModel.inputs[k].x;
-            let connectedNodeY = coordinateModel.inputs[k].y;
-            line(currentNodeX, currentNodeY, connectedNodeX, connectedNodeY);
-            q++;
+  for (let i = 0; i < network.layers.length; i++) {
+    for (let j = 0; j < network.layers[i].neurons.length; j++) {
+      if (i === 0) {
+        let currentNodeX = coordinateModel.layers[i].neurons[j].x;
+        let currentNodeY = coordinateModel.layers[i].neurons[j].y;
+        for (let k = 0; k < network.inputs.length; k++) {
+          if (network.synapses[q].weight < 0) {
+            stroke(0, 0, 255);
+          } else {
+            stroke(255, 0, 0);
           }
-        } else {
-          let currentNodeX = coordinateModel.layers[i].neurons[j].x;
-          let currentNodeY = coordinateModel.layers[i].neurons[j].y;
-          for (let k = 0; k < network.layers[i - 1].neurons.length; k++) {
-            if(network.synapses[q].weight < 0) {
-              stroke(0,0,255);
-            } else {
-              stroke(255,0,0);
-            }
-            let connectedNodeX = coordinateModel.layers[i-1].neurons[k].x;
-            let connectedNodeY = coordinateModel.layers[i-1].neurons[k].y;
-            line(currentNodeX, currentNodeY, connectedNodeX, connectedNodeY);
-            q++;
+          let connectedNodeX = coordinateModel.inputs[k].x;
+          let connectedNodeY = coordinateModel.inputs[k].y;
+          line(currentNodeX, currentNodeY, connectedNodeX, connectedNodeY);
+          q++;
+        }
+      } else {
+        let currentNodeX = coordinateModel.layers[i].neurons[j].x;
+        let currentNodeY = coordinateModel.layers[i].neurons[j].y;
+        for (let k = 0; k < network.layers[i - 1].neurons.length; k++) {
+          if (network.synapses[q].weight < 0) {
+            stroke(0, 0, 255);
+          } else {
+            stroke(255, 0, 0);
           }
+          let connectedNodeX = coordinateModel.layers[i - 1].neurons[k].x;
+          let connectedNodeY = coordinateModel.layers[i - 1].neurons[k].y;
+          line(currentNodeX, currentNodeY, connectedNodeX, connectedNodeY);
+          q++;
         }
       }
     }
-    for(let i = 0; i < network.outputs.length; i++) {
-      let currentNodeX = coordinateModel.outputs[i].x;
-      let currentNodeY = coordinateModel.outputs[i].y;
-      for(let j = 0; j < network.layers[network.layers.length -1].neurons.length; j++) {
-        if(network.synapses[q].weight < 0) {
-          stroke(0,0,255);
-        } else {
-          stroke(255,0,0);
-        }
-        let connectedNodeX = coordinateModel.layers[network.layers.length - 1].neurons[j].x;
-        let connectedNodeY = coordinateModel.layers[network.layers.length - 1].neurons[j].y;
-        line(currentNodeX, currentNodeY, connectedNodeX, connectedNodeY);
-        q++
+  }
+  for (let i = 0; i < network.outputs.length; i++) {
+    let currentNodeX = coordinateModel.outputs[i].x;
+    let currentNodeY = coordinateModel.outputs[i].y;
+    for (let j = 0; j < network.layers[network.layers.length - 1].neurons.length; j++) {
+      if (network.synapses[q].weight < 0) {
+        stroke(0, 0, 255);
+      } else {
+        stroke(255, 0, 0);
       }
+      let connectedNodeX = coordinateModel.layers[network.layers.length - 1].neurons[j].x;
+      let connectedNodeY = coordinateModel.layers[network.layers.length - 1].neurons[j].y;
+      line(currentNodeX, currentNodeY, connectedNodeX, connectedNodeY);
+      q++
     }
+  }
   stroke(0)
 }
 
@@ -241,6 +240,6 @@ function CoordinateModel() {
   this.outputs = []
 }
 
-function sortDescend(a,b) {
-   return b-a;
- }
+function sortDescend(a, b) {
+  return b - a;
+}

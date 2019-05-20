@@ -1,6 +1,5 @@
 async function draw() {
-  console.log(cloneArray[0])
-  noLoop()
+  //noLoop()
   background(10, 50, 200);
   fill(255);
   rect(width/2, -1, width/2, height + 1);
