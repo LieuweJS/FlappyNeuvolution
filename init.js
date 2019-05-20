@@ -1,6 +1,6 @@
 let population = 50;
 let cloneArray = [];
-const mutationRate = 0.1 * 100
+const mutationRate = 0.1
 const mutationRange = 0.2
 let tubes = [];
 let score = 0;
