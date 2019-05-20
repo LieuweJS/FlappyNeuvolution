@@ -15,9 +15,7 @@ function clone() {
 async function updateDistanceParameters(clone) {
   for (let i = 0; i < tubes.length; i++) {
     if (clone.x < tubes[i].x + tubes[i].width) {
-      rect(200, tubes[i].height + 65, 10,10)
       clone.yDistance = clone.y - ((tubes[i].height) + 65);
-
       return
     }
   }
