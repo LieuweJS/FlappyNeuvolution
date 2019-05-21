@@ -11,7 +11,7 @@ let living = 0;
 let button;
 let button2;
 const gameSpeed = 2;
-let mode = 'pretrained'; // modes are: 'pretrained' and anything else
+let mode = 'pretrainedk'; // modes are: 'pretrained' and anything else
 // if you have pretrained weights please insert them in this array
 let preTrainedWeights =[-0.0720357951593038, -0.9067475195946479, -0.3108067166778077, 0.295741548769866, -0.10724364253089824, -0.20519549945583648,
    -0.1321841544216027, 0.7295453173902819, -0.5542386663299901, 0.9864504581036142, -0.40872131576973025, 0.6307114114187442, -0.5027166263222806,
