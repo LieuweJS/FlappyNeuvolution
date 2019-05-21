@@ -11,9 +11,9 @@ let living = 0;
 let button;
 let button2;
 const gameSpeed = 2;
-let mode = 'pretrained'; // modes are: 'pretrained' and anything else
+let mode = 'untrained'; // modes are: 'pretrained' and anything else
 // if you have pretrained weights please insert them in this array
-let preTrainedWeights =[1, 0, 1, 0, -1, 0, -1, -1, 0, -1, 0, -1, 0, -1, 0, -1, -1, 0, 1, 1, -1, 1, -1, 0, -1, -1, 0, -1, -1, -1, 0, 0, -1, 0, -1, 0, 0, 1, -1, 0]//network [2,[5,5],1]
+let preTrainedWeights =[];
 function setup() {
   frameRate(60);
   createCanvas(800, 400);
