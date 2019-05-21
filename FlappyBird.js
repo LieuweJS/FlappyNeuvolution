@@ -1,9 +1,9 @@
 async function draw() {
   background(10, 50, 200);
   fill(255);
-  rect(width/2, -1, width/2, height + 1);
-  for(let i = 0; i < cloneArray.length; i++) {
-    if(cloneArray[i].status === 'alive') {
+  rect(width / 2, -1, width / 2, height + 1);
+  for (let i = 0; i < cloneArray.length; i++) {
+    if (cloneArray[i].status === 'alive') {
       await drawNetwork(cloneArray[i].neuralModel, cloneArray[i].output, i);
       break;
     }
@@ -20,11 +20,10 @@ async function draw() {
           if (tubes[i].isColllision(cloneArray[j])) {
             cloneArray[j].status = 'dead';
             deadAmount++;
-          } else if(cloneArray[j].y <= 0 || cloneArray[j].y >= 400) {
+          } else if (cloneArray[j].y <= 0 || cloneArray[j].y >= 400) {
             cloneArray[j].status = 'dead';
             deadAmount++;
-           }
-           else {
+          } else {
             if (frameCount % 1 === 0) {
               await calculateOutput(cloneArray[j]);
             }
@@ -41,7 +40,7 @@ async function draw() {
     }
     living = cloneArray.length - deadAmount;
   }
-  if (frameCount % 100/gameSpeed === 0) {
+  if (frameCount % 100 / gameSpeed === 0) {
     tubes.push(new tube());
   }
 

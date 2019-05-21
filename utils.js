@@ -1,4 +1,3 @@
-//makes a new generation of clones
 async function makeNewGen() {
   let tempArray = [];
   cloneArray.sort((a, b) => (a.score < b.score) ? 1 : -1)
@@ -173,10 +172,10 @@ async function drawNetwork(network, output, cloneNumber) {
       'y': y
     }
     coordinateModel.outputs.push(outputLocation);
-    if(output > 0.5) {
-      fill(0,255,0)
+    if (output > 0.5) {
+      fill(0, 255, 0)
     } else {
-      fill(255,0,0)
+      fill(255, 0, 0)
     }
     ellipse(x, y, maxNodeHeight);
     y += distBetweenNodes;
@@ -232,7 +231,7 @@ async function drawNetwork(network, output, cloneNumber) {
   }
   stroke(0)
   fill(0)
-  text('network of clone: ' + cloneNumber, (width/2)+10, height-1)
+  text('network of clone: ' + cloneNumber, (width / 2) + 10, height - 1)
 }
 
 function LayerCoordinates() {

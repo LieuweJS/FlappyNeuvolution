@@ -12,7 +12,7 @@ function Model(inputs, layers, outputs) {
     for (let j = 0; j < layers[i]; j++) {
       this.neurons.push(new neuron());
     }
-    if(i === 0) {
+    if (i === 0) {
       connectionsToEachNeuron = inputs;
     } else {
       connectionsToEachNeuron = layers[i - 1];
@@ -47,7 +47,7 @@ function Model(inputs, layers, outputs) {
     }
   }
   this.synapsesAmount = (inputs * layers[0]) + this.synapsesInHiddenLayers + (outputs * layers[layerLength - 1]);
-  for(let i = 0; i < this.synapsesAmount; i++) {
+  for (let i = 0; i < this.synapsesAmount; i++) {
     this.synapses.push(new synapse());
   }
   delete this.neurons;
