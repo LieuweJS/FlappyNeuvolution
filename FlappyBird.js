@@ -2,8 +2,12 @@ async function draw() {
   background(10, 50, 200);
   fill(255);
   rect(width/2, -1, width/2, height + 1);
-
-  await drawNetwork(cloneArray[0].neuralModel, cloneArray[0].output);
+  for(let i = 0; i < cloneArray.length; i++) {
+    if(cloneArray[i].status === 'alive') {
+      await drawNetwork(cloneArray[0].neuralModel, cloneArray[0].output, i);
+      break;
+    }
+  }
   for (let i = 0; i < tubes.length; i++) {
     await tubes[i].drawTube();
     await tubes[i].updatePosition();

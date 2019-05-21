@@ -109,7 +109,7 @@ function logWeights() {
   console.log(synapsesArray);
 }
 
-async function drawNetwork(network, output) {
+async function drawNetwork(network, output, cloneNumber) {
   let totalOutputs = network.outputs.length;
   let totalLayers = network.layers.length;
   let totalInputs = network.inputs.length;
@@ -231,6 +231,8 @@ async function drawNetwork(network, output) {
     }
   }
   stroke(0)
+  fill(0)
+  text('network of clone: ' + cloneNumber, (width/2)+10, height-1)
 }
 
 function LayerCoordinates() {
