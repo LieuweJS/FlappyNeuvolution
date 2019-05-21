@@ -1,1 +1,4 @@
 [1, 0, 1, 0, -1, 0, -1, -1, 0, -1, 0, -1, 0, -1, 0, -1, -1, 0, 1, 1, -1, 1, -1, 0, -1, -1, 0, -1, -1, -1, 0, 0, -1, 0, -1, 0, 0, 1, -1, 0]
+
+
+Note: These weights can only be used in a network with the structure of [2,[5,5],1].
