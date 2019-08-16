@@ -1,4 +1,4 @@
-let population = 50;
+let population = 50;//test
 let cloneArray = [];
 const mutationRate = 0.1
 const mutationRange = 0.2
