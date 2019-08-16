@@ -1,4 +1,4 @@
-let population = 50;//test
+let population = 50;
 let cloneArray = [];
 const mutationRate = 0.1
 const mutationRange = 0.2
@@ -11,8 +11,8 @@ let living = 0;
 let button;
 let button2;
 const gameSpeed = 2;
-let mode = 'untrained'; // modes are: 'pretrained' and anything else
-let preTrainedWeights = []; //if you have pretrained weights please insert them in this array
+let mode = 'pretrained'; // modes are: 'pretrained' and anything else
+let preTrainedWeights = [1, 0, 1, 0, -1, 0, -1, -1, 0, -1, 0, -1, 0, -1, 0, -1, -1, 0, 1, 1, -1, 1, -1, 0, -1, -1, 0, -1, -1, -1, 0, 0, -1, 0, -1, 0, 0, 1, -1, 0]; //if you have pretrained weights please insert them in this array
 function setup() {
   frameRate(60);
   createCanvas(800, 400);
