@@ -31,7 +31,7 @@ function setup() {
     }
   }
   button = createButton('log weights of top scoring clone');
-  button.mousePressed(logWeights);
+  button.mouseClicked(logWeights);
   button2 = createButton('reset');
-  button2.mousePressed(reset);
+  button2.mouseClicked(reset);
 }
