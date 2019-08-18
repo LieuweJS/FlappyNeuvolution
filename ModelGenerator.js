@@ -66,6 +66,7 @@ function input() {
 
 function synapse() {
   this.weight = (Math.random() * 2) - 1;
+  //this.weight = Math.round((Math.random() * 2) - 1); //this works a bit too good
 }
 
 let output = function() {
