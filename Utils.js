@@ -14,9 +14,11 @@ async function makeNewGen() {
   }
 
   for (let i = 0; i < tempArray.length; i++) {
-    for (let j = 0; j < cloneArray[i].neuralModel.synapses.length; j++) {
-      cloneArray[i].neuralModel.synapses[j].weight = tempArray[i].synapses[j].weight;
-    }
+    //replace the neural networks of the already existing clones with the previously saved clones. (possibly unneeded?)
+    //for (let j = 0; j < cloneArray[i].neuralModel.synapses.length; j++) {
+      //cloneArray[i].neuralModel.synapses[j].weight = tempArray[i].synapses[j].weight;
+    //}
+    //reset the clone base stats.
     cloneArray[i].status = 'alive';
     cloneArray[i].x = width / 32;
     cloneArray[i].y = height / 2;
