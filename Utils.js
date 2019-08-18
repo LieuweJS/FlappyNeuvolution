@@ -1,11 +1,14 @@
 async function makeNewGen() {
   let tempArray = [];
+  //dort the cloneArray based on score so the winner comes in slot [0].
   cloneArray.sort((a, b) => (a.score < b.score) ? 1 : -1)
   const winner = JSON.parse(JSON.stringify(cloneArray[0].neuralModel));
+  //save the winner neural net from the previous round to the temArray, used later.
   for (let i = 0; i < Math.round(population / 10); i++) {
     tempArray.push(winner);
   }
-  for (let i = 0; i < Math.round(population / 20); i++) {
+  //save the neural networks of the top 20% of clones so they can be used for breeding later.
+  for (let i = 0; i < Math.round(population / 5); i++) {
     let a = JSON.parse(JSON.stringify(cloneArray[i].neuralModel));
     tempArray.push(a);
   }
