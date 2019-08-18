@@ -23,6 +23,7 @@ async function makeNewGen() {
     cloneArray[i].xDistance = 0;
     cloneArray[i].mappedXDistance = 0;
     cloneArray[i].output = 0;
+    cloneArray[i].color = "#FFFF00"
   }
 
   for (let i = tempArray.length - 1; i < population; i++) {
@@ -40,6 +41,7 @@ async function makeNewGen() {
     cloneArray[i].xDistance = 0;
     cloneArray[i].mappedXDistance = 0;
     cloneArray[i].output = 0;
+    cloneArray[i].color = "#FFA500"
   }
   tempArray = []
   cloneArray[0].neuralModel = winner;

@@ -1,1 +1,2 @@
-1: Change neuron weights from decimal values to binary values.
+1: Change neuron weights from decimal values to binary values. (works too well, almost no training required)
+2: Change colors of new clones and freshly bred clones.

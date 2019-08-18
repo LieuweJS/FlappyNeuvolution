@@ -10,6 +10,7 @@ function clone() {
   this.status = 'alive';
   this.yDistance = 0;
   this.output = 0;
+  this.color = "#FFFF00";
 }
 
 async function updateDistanceParameters(clone) {
@@ -22,7 +23,7 @@ async function updateDistanceParameters(clone) {
 }
 
 async function drawClone(clone) {
-  fill(255, 255, 0);
+  fill(clone.color);
   ellipse(clone.x, clone.y, clone.size, clone.size);
 
   return;
