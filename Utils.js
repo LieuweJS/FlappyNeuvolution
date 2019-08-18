@@ -32,11 +32,16 @@ async function makeNewGen() {
   }
 
   for (let i = tempArray.length - 1; i < population; i++) {
+    //select father and mother for the child at random from the top 20% of neural networks. (previously saved)
     let randomFather = Math.round(Math.random() * (tempArray.length - 1));
     let randomMother = Math.round(Math.random() * (tempArray.length - 1));
-    let d = await breed(tempArray[randomFather], tempArray[randomMother]);
-    let mutated = await mutate(d);
-    cloneArray[i].neuralModel = mutated;
+    //breed a new child based on the 'genes' of the parents.
+    let child = await breed(tempArray[randomFather], tempArray[randomMother]);
+    //apply mutation to the child's neural network.
+    let mutatedNetwork = await mutate(child);
+    //replace neural model of clone with the new child's neural network.
+    cloneArray[i].neuralModel = mutatedNetwork;
+    //reset the clones base stats.
     cloneArray[i].status = 'alive';
     cloneArray[i].x = width / 32;
     cloneArray[i].y = height / 2;
