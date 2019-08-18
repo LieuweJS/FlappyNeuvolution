@@ -53,8 +53,10 @@ async function makeNewGen() {
     cloneArray[i].output = 0;
     cloneArray[i].color = "#FFA500"
   }
+  //empty the tempArray and replace the first clones neural model with the winner's neural model of the previous round.
   tempArray = []
   cloneArray[0].neuralModel = winner;
+  cloneArray[0].color = "FF0000";
 }
 
 async function breed(father, mother) {
