@@ -127,20 +127,25 @@ function logWeights() {
 }
 //This function renders the neural network structure onto the canvas.
 async function drawNetwork(network, output, cloneNumber) {
+  //Set some base values.
   let totalOutputs = network.outputs.length;
   let totalLayers = network.layers.length;
   let totalInputs = network.inputs.length;
   let totalSynapses = network.synapses.length;
   let totalNeurons = [];
+  //Loop for the amount of layers in the neural network.
   for (let i = 0; i < totalLayers; i++) {
     let thisLayer = 0;
+    //Loop for the amount of neurons in the current layer.
     for (let j = 0; j < network.layers[i].neurons.length; j++) {
       thisLayer++;
     }
     totalNeurons.push(thisLayer);
   }
+  //Sort the neuron array.
   totalNeurons.sort(sortDescend);
   let biggest = totalInputs;
+  //Search for the layer with the biggest amount of nodes.
   if (totalOutputs > totalInputs) {
     biggest = totalOutputs;
   }
@@ -149,33 +154,40 @@ async function drawNetwork(network, output, cloneNumber) {
       biggest = totalNeurons[i];
     }
   }
+  //Calculate the dimensions of the nodes for rendering.
   const maxNodeHeight = (height / (biggest + 1)) / 2
   let incrementX = (width / 2) / (1 + totalLayers + 2)
   let x = width / 2 + incrementX;
-
+  //Calculate the distance between the nodes.
   distBetweenNodes = height / network.inputs.length;
   y = distBetweenNodes / 2;
+  //create a Coordinate model.
   let coordinateModel = new CoordinateModel;
+  //Add the coordinates of each input node to the coordinate model.
   for (let i = 0; i < totalInputs; i++) {
     let inputLocation = {
       'x': x,
       'y': y
     }
     coordinateModel.inputs.push(inputLocation);
+    //Draw the nodes.
     ellipse(x, y, maxNodeHeight);
     y += distBetweenNodes;
   }
   x += incrementX
+  //Add the coordinates of each hidden layer to the coordinate model.
   for (let i = 0; i < totalLayers; i++) {
     let distBetweenNodes = height / network.layers[i].neurons.length;
     let y = distBetweenNodes / 2;
     let layerCoordinates = new LayerCoordinates;
+    //Add each hidden layer neuron in a specific layer to the layer coordinate model.
     for (let j = 0; j < totalNeurons[0]; j++) {
       let neuronLocation = {
         'x': x,
         'y': y
       }
       layerCoordinates.neurons.push(neuronLocation);
+      //Draw the nodes.
       ellipse(x, y, maxNodeHeight);
       y += distBetweenNodes;
     }
@@ -184,20 +196,24 @@ async function drawNetwork(network, output, cloneNumber) {
   }
   distBetweenNodes = height / network.outputs.length;
   y = distBetweenNodes / 2;
+  //Add the coordinates of each input node to the coordinate model.
   for (let i = 0; i < totalOutputs; i++) {
     let outputLocation = {
       'x': x,
       'y': y
     }
     coordinateModel.outputs.push(outputLocation);
+    //Color the output nodes based on whether they activate or not
     if (output > 0.5) {
       fill(0, 255, 0)
     } else {
       fill(255, 0, 0)
     }
+    //Draw the nodes.
     ellipse(x, y, maxNodeHeight);
     y += distBetweenNodes;
   }
+  //This section draws the synapses onto the canvas, they are connected to the neurons, their color is based on whether they are a negative number or a positive number.
   let q = 0;
   for (let i = 0; i < network.layers.length; i++) {
     for (let j = 0; j < network.layers[i].neurons.length; j++) {
