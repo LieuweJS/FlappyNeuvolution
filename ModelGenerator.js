@@ -31,25 +31,22 @@ function Model(inputs, layers, outputs) {
     this.outputs.push(new output());
   }
   let i = 0;
-  while (i < layerLength) {
-    if (layerLength % 2 === 0) {
-      this.synapsesInHiddenLayers += layers[i] * layers[i + 1];
-      i += 2;
-    } else if (layerLength > 1) {
-      while (i < layerLength - 1) {
-        this.synapsesInHiddenLayers += layers[i] * layers[i + 1];
-        i += 2;
-      }
-      this.synapsesInHiddenLayers += layers[layerLength - 2] * layers[layerLength - 1];
-      break;
-    } else {
-      i++
-    }
+  while (i < layerLength - 2) {
+    this.synapsesInHiddenLayers += layers[i] * layers[i + 1];
+    i++;
+  }
+  if (layerLength > 1) {
+    this.synapsesInHiddenLayers += layers[layerLength - 2] * layers[layerLength - 1];
+  } else {
+    this.synapsesInHiddenLayers = 0;
   }
   this.synapsesAmount = (inputs * layers[0]) + this.synapsesInHiddenLayers + (outputs * layers[layerLength - 1]);
+
   for (let i = 0; i < this.synapsesAmount; i++) {
     this.synapses.push(new synapse());
   }
+  console.log(this.synapsesAmount)
+  console.log(layerLength)
   delete this.neurons;
   delete this.layer;
   delete this.synapsesInHiddenLayers;

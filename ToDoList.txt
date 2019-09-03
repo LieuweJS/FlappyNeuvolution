@@ -1,2 +1,0 @@
-1: expand model generation beyond 4 hidden layers.
-problem being: cannot generate all of the synapses.
