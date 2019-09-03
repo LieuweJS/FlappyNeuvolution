@@ -1,3 +1,4 @@
+//Set some base variables.
 let population = 50;
 let cloneArray = [];
 const mutationRate = 0.1
@@ -11,14 +12,15 @@ let living = 0;
 let button;
 let button2;
 const gameSpeed = 2;
-let mode = 'fpretrained'; // modes are: 'pretrained' and anything else
+let mode = 'fpretrained'; //Modes are: 'pretrained' and anything else.
 let preTrainedWeights = [1, -1, 0, -0.9545836588553311, -1, -0.5836842725986999, 1, -0.3584339810424084, 0, -1, 1, -1, -1, -1, 0.04639255381123997, -1, -1, -1, -1, -0.7440540074381041, -1, 1, 0.14087270778738903, -1, 1, 0, -1, -0.6036919384197654, 0, -0.3845506211476919, -0.5645504709587401, 1, 1, -1, 1, -1, -0.90601757578942, 1, 1, -0.802156209603202
-]; //if you have pretrained weights please insert them in this array
+]; //If you have pretrained weights please insert them in this array.
+//This function sets up the application.
 function setup() {
   frameRate(60);
   createCanvas(800, 400);
   tubes.push(new tube());
-
+  //If the selected mode is 'pretrained' use the inserted weights as the neural model
   if (mode === 'pretrained') {
     for (let i = 0; i < population; i++) {
       cloneArray.push(new clone());
@@ -26,11 +28,13 @@ function setup() {
         cloneArray[i].neuralModel.synapses[j].weight = preTrainedWeights[j];
       }
     }
+  //If the selected mode isn't 'pretrained', generate new neural networks for each clone.
   } else {
     for (let i = 0; i < population; i++) {
       cloneArray.push(new clone());
     }
   }
+  //Create some buttons.
   button = createButton('log weights of top scoring clone');
   button.mouseClicked(logWeights);
   button2 = createButton('reset');
