@@ -40,8 +40,9 @@ function Model(inputs, layers, outputs) {
   }
 
   let i = 0;
-  
+  //As long as i i smaller than the last hidden layer in the neural network continue this loop.
   while (i < layerLength - 2) {
+    //Add the amount of synapses in the current hidden layer to the total amount of synapses in the hidden layers.
     this.synapsesInHiddenLayers += layers[i] * layers[i + 1];
     i++;
   }
@@ -65,20 +66,20 @@ function Model(inputs, layers, outputs) {
   delete this.synapsesInHiddenLayers;
   delete this.synapsesAmount;
 }
-//Creates a neuron.
+//Creates a neuron node.
 function neuron() {
   this.weight = 0;
 }
-//Creates an input.
+//Creates an input node.
 function input() {
   this.value = 0;
 }
 //Creates a synapse with a random value between -1 and 1.
 function synapse() {
   this.weight = (Math.random() * 2) - 1;
-  //this.weight = Math.round((Math.random() * 2) - 1); //this works a bit too good
+  //this.weight = Math.round((Math.random() * 2) - 1); //Creates weights that are whole numbers.
 }
-//Creates an output.
+//Creates an output node.
 let output = function() {
   this.output = 0;
 }
