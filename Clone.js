@@ -24,13 +24,14 @@ async function updateDistanceParameters(clone) {
     }
   }
 }
-
+//This function renders the clone onto the canvas.
 async function drawClone(clone) {
   fill(clone.color);
   ellipse(clone.x, clone.y, clone.size, clone.size);
 
   return;
 }
+//This function sets off the calculation of the output of the neural model.
 async function calculateOutput(clone) {
   await updateDistanceParameters(clone);
   clone.output = await getOutput(clone.neuralModel, [clone.yDistance, clone.velo]);
@@ -39,7 +40,7 @@ async function calculateOutput(clone) {
   }
   return;
 }
-
+//This function updates the position of the inserted clone.
 async function updatePosition(clone) {
   clone.velo += clone.gravity;
   clone.y += clone.velo;
