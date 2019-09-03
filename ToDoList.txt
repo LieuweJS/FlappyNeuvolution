@@ -1,1 +1,1 @@
-1: expand model generation beyond 3 hidden layers.
+1: expand model generation beyond 4 hidden layers.
