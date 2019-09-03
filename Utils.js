@@ -74,6 +74,7 @@ async function breed(father, mother) {
 async function mutate(network) {
   const length = Math.round(network.synapses.length / mutationRate);
   for (let i = 0; i < network.synapses.length; i++) {
+    //Makes sure that not too many mutations take place in a single neural network.
     if (Math.random() <= mutationRate) {
       let randomValue = randNum(0 - mutationRange, mutationRange);
       network.synapses[i].weight += randomValue;
@@ -95,7 +96,7 @@ const mapNum = (num, in_min, in_max, out_min, out_max) => {
 function randNum(min, max) {
   return Math.floor(min + Math.random() * (max + 1 - min))
 }
-
+//The ELU (Exponential Linear Unit), converges a negative input to 0, but doesn't have any effect on a positive input.
 function ELU(x) {
   this.PReLU = function(a, x) {
     if (x < 0) {
@@ -106,11 +107,11 @@ function ELU(x) {
   }
   return this.PReLU(1.6732, Math.expm1(x));
 }
-
+//This function normalises its input.
 async function normalise(x) {
   return x / 2 / (1 + Math.abs(x) * 0.5);
 }
-
+//This function console.logs the synapse weights of the top scoring clone.
 function logWeights() {
   let savedIndex = 0;
   let synapsesArray = [];
@@ -124,7 +125,7 @@ function logWeights() {
   }
   console.log(synapsesArray);
 }
-
+//This function renders the neural network structure onto the canvas.
 async function drawNetwork(network, output, cloneNumber) {
   let totalOutputs = network.outputs.length;
   let totalLayers = network.layers.length;
