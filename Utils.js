@@ -1,3 +1,4 @@
+//This function breeds a new generation of neural networks.
 async function makeNewGen() {
   let tempArray = [];
   //dort the cloneArray based on score so the winner comes in slot [0].
@@ -58,9 +59,10 @@ async function makeNewGen() {
   cloneArray[0].neuralModel = winner;
   cloneArray[0].color = "FF0000";
 }
-
+//This function breeds 2 neural networks together to create a new one.
 async function breed(father, mother) {
   for (let i = 0; i < father.synapses.length; i++) {
+    //Randomly select who's genes get used.
     let dna = Math.round(Math.random())
     if (dna === 1) {
       father.synapses[i].weight = mother.synapses[i].weight;
@@ -68,7 +70,7 @@ async function breed(father, mother) {
   }
   return father;
 }
-
+//This function mutates a neural network.
 async function mutate(network) {
   const length = Math.round(network.synapses.length / mutationRate);
   for (let i = 0; i < network.synapses.length; i++) {
@@ -85,10 +87,11 @@ async function mutate(network) {
   return network;
 }
 //UTILS
+//This function maps numbers to a specified range.
 const mapNum = (num, in_min, in_max, out_min, out_max) => {
   return (num - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
 }
-
+//This function generates a random number between a specified range.
 function randNum(min, max) {
   return Math.floor(min + Math.random() * (max + 1 - min))
 }
@@ -247,17 +250,17 @@ async function drawNetwork(network, output, cloneNumber) {
   fill(0)
   text('network of clone: ' + cloneNumber, (width / 2) + 10, height - 1)
 }
-
+//This function generates a coordinate layer (used in displaying the neural network).
 function LayerCoordinates() {
   this.neurons = []
 }
-
+//This function generates a model used for coordinates (used in displaying the neural network).
 function CoordinateModel() {
   this.inputs = []
   this.layers = []
   this.outputs = []
 }
-
+//This function sorts an array in descending order.
 function sortDescend(a, b) {
   return b - a;
 }
