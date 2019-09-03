@@ -15,7 +15,7 @@ function clone() {
   this.output = 0;
   this.color = "#FFFF00";
 }
-
+//Updates the clones distance variables, takes the clone as an input.
 async function updateDistanceParameters(clone) {
   for (let i = 0; i < tubes.length; i++) {
     if (clone.x < tubes[i].x + tubes[i].width) {

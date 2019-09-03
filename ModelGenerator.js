@@ -15,26 +15,32 @@ function Model(inputs, layers, outputs) {
     for (let j = 0; j < layers[i]; j++) {
       this.neurons.push(new neuron());
     }
-    //If
+    //If i is 0 the current layer is the input layer, so we are setting the amount of connections to the amount of inputs.
     if (i === 0) {
       connectionsToEachNeuron = inputs;
+    //If i isn't 0 than the current layer isn't the input layer, so we set the amount of connections to the amount of neurons in the previous layer.
     } else {
       connectionsToEachNeuron = layers[i - 1];
     }
+    //Create the current layer with the previously calculated variables.
     this.layer = {
       neurons: this.neurons,
       connectionsToEachNeuron: connectionsToEachNeuron
     };
+    //Push the layer we just created to the layer array in the neural model object.
     this.layers.push(this.layer);
   }
-
+  //Create the inputs and push them into the input array in the neural model object.
   for (let j = 0; j < inputs; j++) {
     this.inputs.push(new input());
   }
+  //Create the outputs and push them into the output array in the neural model object.
   for (let j = 0; j < outputs; j++) {
     this.outputs.push(new output());
   }
+
   let i = 0;
+  
   while (i < layerLength - 2) {
     this.synapsesInHiddenLayers += layers[i] * layers[i + 1];
     i++;
