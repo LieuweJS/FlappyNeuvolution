@@ -2,7 +2,7 @@
 async function makeNewGen() {
   let tempArray = [];
   //dort the cloneArray based on score so the winner comes in slot [0].
-  cloneArray.sort((a, b) => (a.score < b.score) ? 1 : -1)
+  cloneArray.sort((a, b) => (a.score < b.score) ? 1 : -1);
   const winner = JSON.parse(JSON.stringify(cloneArray[0].neuralModel));
   //save the winner neural net from the previous round to the temArray, used later.
   for (let i = 0; i < Math.round(population / 10); i++) {
@@ -52,7 +52,7 @@ async function makeNewGen() {
     cloneArray[i].xDistance = 0;
     cloneArray[i].mappedXDistance = 0;
     cloneArray[i].output = 0;
-    cloneArray[i].color = "#FFA500"
+    cloneArray[i].color = "#FFA500";
   }
   //empty the tempArray and replace the first clones neural model with the winner's neural model of the previous round.
   tempArray = []
@@ -63,7 +63,7 @@ async function makeNewGen() {
 async function breed(father, mother) {
   for (let i = 0; i < father.synapses.length; i++) {
     //Randomly select who's genes get used.
-    let dna = Math.round(Math.random())
+    let dna = Math.round(Math.random());
     if (dna === 1) {
       father.synapses[i].weight = mother.synapses[i].weight;
     }
