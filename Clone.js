@@ -3,7 +3,7 @@ function clone() {
   //Base stats of the clone.
   this.score = 0;
   //The "brain" of the clone, using the setup of (inputs, [hidden layers], outputs).
-  this.neuralModel = new Model(2, [5, 5],1);
+  this.neuralModel = new Model(2, [5,5],1);
   this.size = height / 12;
   this.x = width / 32;
   this.y = height / 2;

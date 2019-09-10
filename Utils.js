@@ -94,7 +94,7 @@ const mapNum = (num, in_min, in_max, out_min, out_max) => {
 }
 //This function generates a random number between a specified range.
 function randNum(min, max) {
-  return Math.floor(min + Math.random() * (max + 1 - min))
+  return Math.floor(min + Math.random() * (max + 1 - min));
 }
 //The ELU (Exponential Linear Unit), converges a negative input to 0, but doesn't have any effect on a positive input.
 function ELU(x) {
@@ -155,8 +155,8 @@ async function drawNetwork(network, output, cloneNumber) {
     }
   }
   //Calculate the dimensions of the nodes for rendering.
-  const maxNodeHeight = (height / (biggest + 1)) / 2
-  let incrementX = (width / 2) / (1 + totalLayers + 2)
+  const maxNodeHeight = (height / (biggest + 1)) / 2;
+  let incrementX = (width / 2) / (1 + totalLayers + 2);
   let x = width / 2 + incrementX;
   //Calculate the distance between the nodes.
   distBetweenNodes = height / network.inputs.length;
@@ -174,7 +174,7 @@ async function drawNetwork(network, output, cloneNumber) {
     ellipse(x, y, maxNodeHeight);
     y += distBetweenNodes;
   }
-  x += incrementX
+  x += incrementX;
   //Add the coordinates of each hidden layer to the coordinate model.
   for (let i = 0; i < totalLayers; i++) {
     let distBetweenNodes = height / network.layers[i].neurons.length;
@@ -205,9 +205,9 @@ async function drawNetwork(network, output, cloneNumber) {
     coordinateModel.outputs.push(outputLocation);
     //Color the output nodes based on whether they activate or not
     if (output > 0.5) {
-      fill(0, 255, 0)
+      fill(0, 255, 0);
     } else {
-      fill(255, 0, 0)
+      fill(255, 0, 0);
     }
     //Draw the nodes.
     ellipse(x, y, maxNodeHeight);
@@ -260,22 +260,22 @@ async function drawNetwork(network, output, cloneNumber) {
       let connectedNodeX = coordinateModel.layers[network.layers.length - 1].neurons[j].x;
       let connectedNodeY = coordinateModel.layers[network.layers.length - 1].neurons[j].y;
       line(currentNodeX, currentNodeY, connectedNodeX, connectedNodeY);
-      q++
+      q++;
     }
   }
-  stroke(0)
-  fill(0)
-  text('network of clone: ' + cloneNumber, (width / 2) + 10, height - 1)
+  stroke(0);
+  fill(0);
+  text('network of clone: ' + cloneNumber, (width / 2) + 10, height - 1);
 }
 //This function generates a coordinate layer (used in displaying the neural network).
 function LayerCoordinates() {
-  this.neurons = []
+  this.neurons = [];
 }
 //This function generates a model used for coordinates (used in displaying the neural network).
 function CoordinateModel() {
-  this.inputs = []
-  this.layers = []
-  this.outputs = []
+  this.inputs = [];
+  this.layers = [];
+  this.outputs = [];
 }
 //This function sorts an array in descending order.
 function sortDescend(a, b) {
