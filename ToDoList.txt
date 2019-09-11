@@ -1,0 +1,16 @@
+iterate towards better network by only mutating?
+iterate through summing the opposites?
+more inputs
+better tube placement
+if not jumping is falling
+
+async function breed(father, mother) {
+  for (let i = 0; i < father.synapses.length; i++) {
+    //Randomly select who's genes get used.
+    let dna = Math.round(Math.random());
+    if (dna === 1) {
+      father.synapses[i].weight = mother.synapses[i].weight;
+    }
+  }
+  return father;
+}

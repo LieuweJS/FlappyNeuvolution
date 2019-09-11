@@ -56,7 +56,7 @@ async function draw() {
     living = cloneArray.length - deadAmount;
   }
   //If the total amount of frames passed is divisable by 100, create a new tube.
-  if (frameCount % 100 / gameSpeed === 0) {
+  if (frameCount % 125 / gameSpeed === 0) {
     tubes.push(new tube());
   }
   //Display information onto the canvas.

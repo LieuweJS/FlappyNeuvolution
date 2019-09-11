@@ -59,16 +59,29 @@ async function makeNewGen() {
   cloneArray[0].neuralModel = winner;
   cloneArray[0].color = "FF0000";
 }
-//This function breeds 2 neural networks together to create a new one.
+//This function merges 2 neural networks together to create a new one.
 async function breed(father, mother) {
-  for (let i = 0; i < father.synapses.length; i++) {
-    //Randomly select who's genes get used.
-    let dna = Math.round(Math.random());
-    if (dna === 1) {
-      father.synapses[i].weight = mother.synapses[i].weight;
+  for(let i = 0; i < father.synapses.length; i++) {
+    if(xor(father.synapses[i].weight, mother.synapses[i].weight) === 1) {
+      father.synapses[i].weight = father.synapses[i].weight + mother.synapses[i].weight;
+    }
+    else {
+      if(Math.round(Math.random()) === 1) {
+        father.synapses[i].weight = mother.synapses[i].weight;
+      }
     }
   }
   return father;
+}
+
+function xor(n1,n2) {
+  if(n1 <= 0 && n2 <= 0) {
+    return 0;
+  } else if(n1 >= 0 && n2 >= 0) {
+    return 0;
+  } else {
+    return 1;
+  }
 }
 //This function mutates a neural network.
 async function mutate(network) {
