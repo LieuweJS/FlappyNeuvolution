@@ -31,12 +31,15 @@ let neuralEvolution = function(settings) {
 
     for(let i in father) {
       if(Math.random() <= main.settings.mutationRate) {
-        father = ;
+        father = father + limitedRandom(main.settings.mutationRange);
       }
     }
   }
 
-  let 
+  let limitedRandom = function(max) {
+    min = 0 - limit;
+    return min + Math.random() * (max - min);
+  }
 
   let ELU = function() {
 
