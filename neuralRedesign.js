@@ -11,7 +11,7 @@ let neuralEvolution = function(settings) {
     activation = 'ELU'
 
   }
-  
+
   main.setSettings = function(settings) {
     for(let i in settings) {
       if(this.settings[i] != undefined) {
@@ -21,8 +21,12 @@ let neuralEvolution = function(settings) {
   }
 
   let breed = function(father, mother, childAmount) {
-    for() {
+    for(let i in father) {
 
+    }
+
+    for() {
+      
     }
   }
 }
