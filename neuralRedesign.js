@@ -4,7 +4,7 @@ let neuralEvolution = function(settings) {
 
   main.settings {
     population = 50,
-    network = [1,[1],1],
+    networkStructure = [1,[1],1],
     mutationRate = 0.2,
     mutationRange = 0.3,
     newNets = 0.2,
@@ -21,6 +21,12 @@ let neuralEvolution = function(settings) {
     }
   }
   main.setSettings(settings);
+
+  let createNetwork = function(networkStructure) {
+    for() {
+
+    }
+  }
 
   let breed = function(father, mother, childAmount) {
     for(let i in father) {
@@ -39,7 +45,7 @@ let neuralEvolution = function(settings) {
   let neuron = function() {
     let weights = function(neuron) {
       this.weight = (math.random() * 2) - 1;
-    }  
+    }
   }
 
   let limitedRandom = function(max) {
