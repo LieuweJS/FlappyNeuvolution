@@ -41,7 +41,7 @@ let neuralEvolution = function(settings) {
     return min + Math.random() * (max - min);
   }
 
-  let elu = function() {
+  let elu = function(x) {
     this.PReLU = function(a, x) {
       if (x < 0) {
         return a * x;
@@ -56,8 +56,8 @@ let neuralEvolution = function(settings) {
 
   }
 
-  let sigmoid = function() {
-
+  let sigmoid = function(x) {
+    return 1 / (1 + Math.exp(-input));
   }
 
   let linear = function() {
