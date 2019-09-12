@@ -28,6 +28,12 @@ let neuralEvolution = function(settings) {
     }
   }
 
+  let calculateOutput = function(activation, network) {
+    for() {
+      
+    }
+  }
+
   let breed = function(father, mother, childAmount) {
     for(let i in father) {
       if(Math.random() <= 0.5) {
