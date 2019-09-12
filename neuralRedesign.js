@@ -36,6 +36,12 @@ let neuralEvolution = function(settings) {
     }
   }
 
+  let neuron = function() {
+    let weights = function(neuron) {
+      this.weight = (math.random() * 2) - 1;
+    }  
+  }
+
   let limitedRandom = function(max) {
     min = 0 - limit;
     return min + Math.random() * (max - min);
