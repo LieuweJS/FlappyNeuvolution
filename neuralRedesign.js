@@ -32,8 +32,9 @@ let neuralEvolution = function(settings) {
     }
     this.neurons = []
     for(let i in networkStructure[1].length) {
-      for(let j in networkStructure[1][i]) {
+      for(let j in networkStructure[1]) {
         this.neurons.push(new neuron())
+        //[1][j] to select the current in loop neuron
       }
     }
     this.outputs = []
