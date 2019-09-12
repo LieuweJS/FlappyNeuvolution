@@ -1,3 +1,7 @@
+/**
+network always has 1 input layer and 1 output layer
+
+*/
 let neuralEvolution = function(settings) {
   //these are the default settings
   const main = this;
@@ -10,9 +14,8 @@ let neuralEvolution = function(settings) {
     newNets = 0.2,
     bestNets = 0.2,
     activation = 'ELU'
-
   }
-
+  //network[1][1]
   main.setSettings = function(settings) {
     for(let i in settings) {
       if(settings[i] != undefined) {
@@ -23,8 +26,20 @@ let neuralEvolution = function(settings) {
   main.setSettings(settings);
 
   let createNetwork = function(networkStructure) {
-    for() {
-
+    //create input layer
+    this.inputs = []
+    for(let i in networkStructure[0]) {
+      this.inputs.push(new input())
+    }
+    this.neurons = []
+    for(let i in networkStructure[1].length) {
+      for(let j in networkStructure[1][i]) {
+        this.neurons.push(new neuron())
+      }
+    }
+    this.outputs = []
+    for(let i in networkStructure[2]) {
+      this.outputs.push(new output())
     }
   }
 
@@ -47,11 +62,19 @@ let neuralEvolution = function(settings) {
       }
     }
   }
+  let input = function() {
+    this.value = 0;
+  }
 
   let neuron = function() {
+    this.value = 0;
     let weights = function(neuron) {
       this.weight = (math.random() * 2) - 1;
     }
+  }
+
+  let output = function() {
+    this.value = 0
   }
 
   let limitedRandom = function(max) {
