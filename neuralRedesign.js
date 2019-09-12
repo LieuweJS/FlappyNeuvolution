@@ -13,12 +13,13 @@ let neuralEvolution = function(settings) {
   }
 
   main.setSettings = function(settings) {
-    for(let i in settings) {
+    for(let i in this.settings) {
       if(this.settings[i] != undefined) {
-        main.settings[i] = settings[i];
+        main.settings[i] = this.settings[i];
       }
     }
   }
+  main.setSettings(settings);
 
   let breed = function(father, mother, childAmount) {
     for(let i in father) {
@@ -26,7 +27,14 @@ let neuralEvolution = function(settings) {
     }
 
     for() {
-      
+
     }
   }
+  let ELU = function() {
+
+  };
+
+  let SIGMOID = function() {
+
+  };
 }
