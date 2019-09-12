@@ -4,7 +4,13 @@
 function neuralEvolution(settings) {
   //these are the default settings
   const main = this;
-  main.mutationRate = 0.2;
-  main.networkStructureType = 'fullyConnected';
-  main.networkStructure = [2,[2,2],1];
+  main.settings {
+    population = 50
+    network = [1,[1],1];
+    mutationRate = 0.2;
+    activation = 'ELU'
+  }
+  let breed = function(father, mother, childAmount) {
+    
+  }
 }
