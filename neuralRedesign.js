@@ -6,6 +6,7 @@ let neuralEvolution = function(settings) {
     population = 50,
     network = [1,[1],1],
     mutationRate = 0.2,
+    mutationRange = 0.3,
     newNets = 0.2,
     bestNets = 0.2,
     activation = 'ELU'
@@ -23,13 +24,20 @@ let neuralEvolution = function(settings) {
 
   let breed = function(father, mother, childAmount) {
     for(let i in father) {
-
+      if(Math.random() <= 0.5) {
+        father = mother;
+      }
     }
 
-    for() {
-
+    for(let i in father) {
+      if(Math.random() <= main.settings.mutationRate) {
+        father = ;
+      }
     }
   }
+
+  let 
+
   let ELU = function() {
 
   }
