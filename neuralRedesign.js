@@ -32,9 +32,17 @@ let neuralEvolution = function(settings) {
   }
   let ELU = function() {
 
-  };
+  }
+
+  let RELU = function() {
+
+  }
 
   let SIGMOID = function() {
 
-  };
+  }
+
+  let LINEAR = function() {
+
+  }
 }
