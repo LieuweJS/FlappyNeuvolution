@@ -41,7 +41,7 @@ let neuralEvolution = function(settings) {
     return min + Math.random() * (max - min);
   }
 
-  let ELU = function() {
+  let elu = function() {
     this.PReLU = function(a, x) {
       if (x < 0) {
         return a * x;
@@ -52,15 +52,19 @@ let neuralEvolution = function(settings) {
     return this.PReLU(1.6732, Math.expm1(x));
   }
 
-  let RELU = function() {
+  let relu = function() {
 
   }
 
-  let SIGMOID = function() {
+  let sigmoid = function() {
 
   }
 
-  let LINEAR = function() {
+  let linear = function() {
 
+  }
+
+  let normalise = function(x) {
+    return x / 2 / (1 + Math.abs(x) * 0.5);
   }
 }
