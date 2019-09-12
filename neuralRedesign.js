@@ -42,7 +42,14 @@ let neuralEvolution = function(settings) {
   }
 
   let ELU = function() {
-
+    this.PReLU = function(a, x) {
+      if (x < 0) {
+        return a * x;
+      } else {
+        return x;
+      }
+    }
+    return this.PReLU(1.6732, Math.expm1(x));
   }
 
   let RELU = function() {
