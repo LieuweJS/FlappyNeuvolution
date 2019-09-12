@@ -26,7 +26,6 @@ let neuralEvolution = function(settings) {
   main.setSettings(settings);
 
   let createNetwork = function(networkStructure) {
-    //create input layer
     this.inputs = []
     for(let i in networkStructure[0]) {
       this.inputs.push(new input())
