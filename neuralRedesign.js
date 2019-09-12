@@ -30,7 +30,7 @@ let neuralEvolution = function(settings) {
 
   let calculateOutput = function(activation, network) {
     for() {
-      
+
     }
   }
 
@@ -55,7 +55,7 @@ let neuralEvolution = function(settings) {
   }
 
   let limitedRandom = function(max) {
-    min = 0 - limit;
+    let min = 0 - max;
     return min + Math.random() * (max - min);
   }
 
