@@ -2,7 +2,7 @@
 *The basic principle of this function is to calculate the outputs of the neural network
 *using the pregenerated weights in the model and the current output.
 *This is done by taking the input(s) and running them through the neurons, each neuron is connected to eachother.
-*Each neuron has a 'z' value, this value is, aquired by multiplying the input(s) with the weights of the synapses that they are attached to,
+*Each neuron has a 'z' value, this value is aquired by multiplying the input(s) with the weights of the synapses that they are attached to,
 *we then add up all of these values with each other and run them through the ELU (Exponential Linear Unit) activation function.
 *Repeat this process with each neuron in the model until you get to the output, where the output will be normalised to a value between -1 and 1.
 */
