@@ -6,7 +6,7 @@
 *we then add up all of these values with each other and run them through the ELU (Exponential Linear Unit) activation function.
 *Repeat this process with each neuron in the model until you get to the output, where the output will be normalised to a value between -1 and 1.
 */
-//This function calculates the output of the nerual model, when all input values and the neural model of the clone are given.
+//This function calculates the output of the neural model, when all input values and the neural model of the clone are given.
 async function getOutput(model, inputValues) {
   //Set some base values and create an output array.
   this.output = [];
