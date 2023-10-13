@@ -1,4 +1,4 @@
-//This function generate the neural model object, ot the "brain" of the clone.
+//This function generate the neural model object, or the "brain" of the clone.
 function Model(inputs, layers, outputs) {
   //Set some base values and create some arrays.
   let connectionsToEachNeuron = 0;
